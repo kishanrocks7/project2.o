@@ -9,6 +9,8 @@ from datetime import date
 from databaselibrary import getblogcur,getfaqcur
 ############Lib end ###########
 
+
+
 def bloggerregister():
     if request.method  == "POST":
         fullkey = uuid.uuid4()
