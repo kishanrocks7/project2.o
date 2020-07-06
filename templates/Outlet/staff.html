@@ -1,0 +1,413 @@
+{% extends 'index.html' %}
+{% block includes %}
+
+<link href="https://fonts.googleapis.com/css?family=Montserrant:300,400,500,600,700" rel="stylesheet">
+	<!-- Bootstrap css       -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="../static/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="../static/css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="../static/css/magnific-popup.css">
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="../static/css/flexslider.css">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="../static/fonts/flaticon/font/flaticon.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="../static/css/style.css">
+	<link rel="stylesheet" href="../static/css/curd.css">
+	<!-- Modernizr JS -->
+	<script src="../static/js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="../static/js/respond.min.js"></script>
+	<![endif]-->
+	<script src="https://kit.fontawesome.com/b2208ecd95.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+
+{% endblock %}
+{% block headextra %}
+{% if 'outlet_id' in session %}
+<div class="col-md-2">
+    <div class="profile loc">
+        <div class="dropdown">
+            <a href="#" id="profilebutton"><span class="icon"><i
+                        class="icon-user"></i></span></a>
+            <p style="padding-top: 4%;"><a
+                    href="#">{% if 'user_name' in session %}{{ session['user_name'] }}{% endif %}</a>
+            </p>
+            <div class="dropdown-menu" id="profilecontent"
+                style="margin-top: 20px; margin-left:80px;">
+                <ul></ul>
+                <li class="dropdown-item"><a
+                        href="outlet_profile">My Account</a>
+                </li>
+                <li class="dropdown-item"><a
+                        href="{{ url_for('logout') }}">Logout</a></li>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-2">
+	<p style="padding-top: 4%; margin-left: 60px;">notification</p>
+	<div class="notification">
+		<span class="icon"><i class=" icon-bell"></i></span>
+	</div>
+</div>
+
+{% endif %}
+{% endblock %}
+{% block countingbar %}
+{% endblock %}
+{% block slider %}
+{% endblock %}
+{% block content %}
+
+
+
+<!--   CRUD start from here..     -->
+<section id="curd-border-area">
+  <div id="main-curd-area">
+    <div id="data-curd">
+      <div class="main-content">
+        {% with msg = get_flashed_messages() %}
+        {% if msg %}
+        <h5 style="margin-bottom: 30px; margin-top: 30px; text-align: center; color: #ff2121;">{{msg[0]}}</h5>
+        {% endif %}
+        {% endwith %}
+        {%  if pmsg %}
+        <h5 style="margin-bottom: 30px; margin-top: 30px; text-align: center; color: #ff2121;">{{pmsg}}</h5>
+        {% endif %}
+        <div class=" form-inline">
+          <button id="add-button" class="add_staff_btn" type="button" data-toggle="modal"
+            data-target="#addstaffform">
+            Add Staff
+          </button>
+          <!-- Search form -->
+          <form action="{{url_for('search_staff')}}" method="post" class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2"style="margin-left: 500px;" >
+            <input class="form-control form-control-sm mr-3 w-25" type="text" placeholder="Search staff" aria-label="Search" pattern="([a-zA-Z]).{2,}" Title="Atleast Two characters are required" name="searchinp" >
+            <button style="background-color: #ff2121; color: white; padding: 5px 10px;"><i class="fas fa-search"></i></button>
+          </form>
+        </div>
+      </div>
+    
+
+<!-- start Starting staff-->
+      <div class="main-content">
+        <div class="container-fluid content-header">
+          <div class="row">
+            <div class="col item-area" style="display: none; width: 0px;">
+              <div class="item-name">
+                Id
+                <span>
+                  <i class="fas fa-caret-up"></i>
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+            <div class="col item-area" style="width: 15%">
+              <div class="item-name">
+                Name
+                <span>
+                  <i class="fas fa-caret-up"></i>
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+            <div class="col item-area" style="width: 15%">
+              <div class="item-name">
+                Email
+                <span>
+                  <i class="fas fa-caret-up"></i>
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+            <div class="col item-area" style="width: 12%">
+              <div class="item-name">
+                Contact
+                <span>
+                  <i class="fas fa-caret-up"></i>
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+            <div class="col item-area" style="width: 12%">
+              <div class="item-name">
+                Gender
+                <span>
+                  <i class="fas fa-caret-up"></i>
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+            <div class="col item-area" style="width: 12%">
+              <div class="item-name">
+                Post
+                <span>
+                  <i class="fas fa-caret-up"></i>
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="col item-area">
+              <div class="item-name">
+                Actions
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- staff data on Page Load-->
+      {% if pdata %}
+      {% for staffdata in pdata %}
+      <div class="container-fluid all-data-item">
+        <div class="row">
+            <form class="staffinfoform form-inline" method="post" action="{{url_for('delete_staff_details')}}">
+            <input value="{{staffdata[0]}}" type="text" class="staffid" name="id" style="border: none; width: 0px; display: none;">
+          <div class="col item-area items-data" style="width: 15%">
+            <input value="{{staffdata[1]}}" type="text" class="staffname" name="staffname" pattern="([A-Za-z]).{3,}" title="must be of at least 3 character"  readonly style="border: none;">
+          </div>
+          <div class="col item-area items-data" style="width: 15%;">
+            <input value="{{staffdata[3]}}" type="email" class="staffemail" name="staffemail" readonly style="border: none;">
+          </div>
+          <div class="col item-area items-data" style="width: 12%">
+            <input value="{{staffdata[2]}}" type="text" pattern="[6789][0-9]{9}" class="staffnumber" name="staffnumber" readonly style="border: none;">
+          </div>
+          <div class="col item-area items-data" style="width: 12%">
+            <input value="{{staffdata[4]}}" type="text"  class="gender" class="gender " name="gender" readonly style="border: none;">
+          </div>
+          <div class="col item-area items-data" style="width: 12%">
+            <input value="{{staffdata[7]}}" type="text" class="post" name="post" readonly style="border: none;">
+          </div>
+          <div class="col item-area items-data">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col actions">
+                  <div>
+                    <button class="editstaffinfo" type="button"
+                      style="background-color: #ff2121; border: none; color: white; " data-toggle="modal"
+                      data-target="#editstaffform{{loop.index}}">
+                      <i class="far fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+
+
+                <div class="col actions">
+                  <div>
+                    <button class="deletestaffinfo" style="background-color: #ff2121; border: none; color: white; ">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- modal form (pop up) for edit staff details -->
+
+<div class="modal fade" id="editstaffform{{loop.index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header text-center">
+      <h4 class="modal-title w-100 font-weight-bold">Edit Staff details</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body mx-3">
+      <form action="{{url_for('change_staff_details')}}" method="post">
+        <input value="{{staffdata[0]}}" type="text" class="staffid" name="id" style="border: none; width: 0px; display: none;">
+        <div class="form-group">
+          <label for="Name">Name</label>
+          <input value="{{staffdata[1]}}" id="Name" type="text" name="name" class="form-control" placeholder="Staff Name.." required>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input value="{{staffdata[2]}}" id="phoneNumber" type="text" name="phoneNumber" pattern="[6789][0-9]{9}" class="form-control"
+            maxlength="10" placeholder="Phone Number.." required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input value="{{staffdata[3]}}" id="email" type="email" name="email" class="form-control" placeholder="E-mail.." required>
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select class="form-control" name="gender" id="gender">
+            <option  value="{{staffdata[4]}}">{{staffdata[4]}}</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="Age">Age</label>
+          <select class="form-control" name="age" id="Age">
+            <option  value="{{staffdata[5]}}">{{staffdata[5]}}</option>
+            {% for i in range(1,100) %}
+            <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea id="address" type="text" name="address" class="form-control" rows="3"
+            placeholder="Staff Address.." required>{{staffdata[6]}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="post">Post</label>
+          <select class="form-control" name="post" id="post">
+            <option value="{{staffdata[7]}}">{{staffdata[7]}}</option>
+            {% for i in ["manager","supervisor"] %}
+            <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="commodityUnits">Aadhar Number</label>
+          <input value="{{staffdata[8]}}" id="aadharNumber" type="text" name="aadharNumber" class="form-control" 
+            placeholder="Enter 12 digit aadhar Number.." maxlength="12"  minlength="12" title="Not start with 0,1 and have length 12" pattern="[2-9][1-9]{11}"  required>
+        </div>
+    </div>
+    <div class="form-group text-center">
+
+      <button class="btn " style="text-align: center;color:white; padding: 10px; background-color: #ff2121;">Save Information</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+<!-- end of edit Pop-up-->
+
+
+      {% endfor %}
+      {% endif %}
+
+
+      <div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination ml-4 my-pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+
+
+    </div>
+    <div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- modal form (pop up) for add staff -->
+
+<div class="modal fade" id="addstaffform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add New Staff</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form action="{{url_for('add_staff')}}" method="post">
+          <div class="form-group">
+            <label for="Name">Name</label>
+            <input id="Name" type="text" name="name" class="form-control" placeholder="Staff Name.." required>
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input id="phoneNumber" type="text" name="phoneNumber" pattern="[6789][0-9]{9}" class="form-control"
+              maxlength="10" placeholder="Phone Number.." required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" class="form-control" placeholder="E-mail.." required>
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="form-control" name="gender" id="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="Age">Age</label>
+            <select class="form-control" name="age" id="Age">
+              <option value=select>select</option>
+              {% for i in range(1,100) %}
+              <option value="{{i}}">{{i}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea id="address" type="text" name="address" class="form-control" rows="3"
+              placeholder="Staff Home Address.." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="post">Post</label>
+            <select class="form-control" name="post" id="post">
+              <option value=select>select</option>
+              {% for i in ["manager","supervisor"] %}
+              <option value="{{i}}">{{i}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="commodityUnits">Aadhar Number</label>
+            <input id="aadharNumber" type="text" name="aadharNumber" class="form-control"
+              placeholder="Enter 12 digit aadhar Number.." pattern="[2-9][0-9]{11}" maxlength="12" required>
+          </div>
+      </div>
+      <div class="form-group text-center">
+
+        <button class="btn " style="text-align: center;color:white; padding: 10px; background-color: #ff2121;">Add New Staff</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block blogs %}
+{% endblock %}
+{% block organisation %}
+{% endblock %}

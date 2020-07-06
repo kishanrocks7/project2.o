@@ -1,0 +1,43 @@
+{% extends 'warehouse_dashboard.html' %}
+
+{% block content %}
+<!-- profile section -->
+<div id="colorlib-choose">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="choose">
+				<div class="half img-bg" style="background-image: url(../static/images/latest_2.jpg);"></div>
+				<div class="half features-wrap">
+					
+					<div class="features-services animate-box">
+						<div class="row">
+							<div style="width: 50%; margin: 25px auto;font-family: 'Montserrat', sans-serif;">
+								<h1 style="text-align: center;color: #ff2121; margin-bottom:50px;">Edit profile</h1>
+								<form action="{{ url_for('warehouseregister') }}" method="post">
+									
+									<div class="form-group">
+										<label for="fname">Name <span class="star">&#9733;</span></label>
+										<input id="fname" type="text" name="name" class="form-control" placeholder="name.." required>
+									</div>
+									<div class="form-group">
+										<label for="lname">Contact Number<span class="star">&#9733;</span></label>
+										<input id="lname"  type="text" name="cno" class="form-control" placeholder="contact Number.." required>
+									</div>	
+									<div class="form-group text-center">
+										<a href="{{ url_for('warehouselogin') }}">
+																						<button class="btn btn-block " style="text-align: center;color:white; padding: 10px; background-color: #ff2121;">Change</button>
+																						</a>
+									</div>
+									
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><br><br><br>
+    
+{% endblock %}
+

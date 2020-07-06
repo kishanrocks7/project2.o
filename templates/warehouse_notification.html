@@ -1,0 +1,91 @@
+{% extends 'warehouse_dashboard.html'  %}
+{% block slider %}
+{% endblock %}
+{% block content %}
+{% with msg = get_flashed_messages() %}
+{% if msg %}
+{% for wmsg in msg %}
+<h5 class="text-center" style="color: #ff2121;">{{wmsg}}</h5>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+<div class="container" style="margin-top: 40px;">
+    {% if notifdata %}<h3 class="text-center" style=" margin-bottom: 40px;">New Notifications !</h3>{% endif  %}
+    <div class="row text-center justify-content-center">
+        <div class="accordion all-slider">
+            {% if notifdata %}
+            {% for data in notifdata %}
+
+            <div class="card single-card" style="margin: 10px 10px;">
+                <div class="content" data-toggle="collapse" data-target="#collapse{{loop.index}}" aria-expanded="true"
+                    aria-controls="collapse{{loop.index}}">
+                    <div class="card-header text-center"
+                        style="cursor: pointer; width:400px; background: #ff2121; color: white;"
+                        id="heading{{loop.index}}">
+
+                        <p style="font-size: 16px;">New request for {{data[3]}}</p>
+                    </div>
+                </div>
+                <div id="collapse{{loop.index}}" class="collapse hidden-area" aria-labelledby="heading{{loop.index}}"
+                    data-parent="#accordi{{loop.index}}xample">
+                    <div class="card-body">
+                        <img src="../static/photos/{{data[5]}}" class="card-img-top">
+                        <form action='{{url_for("acceptorder")}}' method="POST" class="orderconfirmationform">
+                            <input type="hidden" value="{{data[0]}}" name="requestid">
+                            <div class=" text-center justify-content-center" style="margin-top: 30px;">
+                                <h4>{{data[3]}}</h4>
+                                <h4>{{data[4]}} units</h4>
+                                <input type="submit" value="accept" class="accept btn"
+                                    style="padding: 8px 30px; background:green; color: white;">
+                                <input type="button" data-toggle="modal" data-target="#notif{{loop.index}}"
+                                    value="reject" class="reject btn"
+                                    style="padding: 8px 30px; background:#ff2121; color: white;">
+                            </div>
+                        </form>
+                        <!-- Modal for reject reason ask -->
+                        <div class="modal fade" id="notif{{loop.index}}" tabindex="-1" role="dialog"
+                            aria-labelledby="ModalLabel{{loop.index}}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title text-center justify-content-center"
+                                            id="ModalLabel{{loop.index}}">Reason</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form method="POST" action="{{url_for('rejectorder')}}">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <input type="hidden" value="{{data[0]}}" name="requestid">
+                                                <label>Enter reason of rejection</label>
+                                                <textarea class="form-control" rows="5" name="reason"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn" data-dismiss="modal"
+                                                style="padding: 8px 30px; background:green; color: white;">Cancel</button>
+                                            <button type="submit" class="btn"
+                                                style="padding: 8px 17px; background:#ff2121; color: white;">Send
+                                                rejection</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div style="margin-bottom: 30px;"></div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

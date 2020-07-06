@@ -1,0 +1,826 @@
+{% extends 'Outlet/outlet_home.html' %}
+
+{% block includes %}
+
+<link href="https://fonts.googleapis.com/css?family=Montserrant:300,400,500,600,700" rel="stylesheet">
+	<!-- Bootstrap css       -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="../static/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="../static/css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="../static/css/magnific-popup.css">
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="../static/css/flexslider.css">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="../static/fonts/flaticon/font/flaticon.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="../static/css/style.css">
+	<link rel="stylesheet" href="../static/css/curd.css">
+	<!-- Modernizr JS -->
+	<script src="../static/js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="../static/js/respond.min.js"></script>
+	<![endif]-->
+	<script src="https://kit.fontawesome.com/b2208ecd95.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+
+{% endblock %}
+
+{% block slider %}
+{% endblock %}
+{% block content %}
+<!--products -->
+<!--head-->
+{% with msg = get_flashed_messages() %}
+        {% if msg %}
+        <h5 style="margin-bottom: 30px; margin-top: 30px; text-align: center; color: #ff2121;">{{msg[0]}}</h5>
+        {% endif %}
+        {% endwith %}
+<h1 class="text-center" style="font-family: monsterrat; margin-bottom: 30px;">products</h1>
+<div class="container" style="margin-bottom: 50px; border: 1px solid rgba(0,0,0,0.2); box-shadow:0 0 13px grey;">
+  <div class="row" style="height: 40px;  color: white; background-color: #ff2121; box-shadow: 0 0 3px black;">
+		<div class="col-md-3 text-center">
+			<h4 >Product Name</h4>
+		</div>
+		<div class="col-md-3 text-center">
+			<h4>Description</h4>
+		</div>
+    <div class="col-md-3 text-center">
+			<h4>Stocks </h4>
+    </div>
+    <div class="col-md-3 text-center">
+			<h4>Action </h4>
+		</div>
+  </div>
+  
+	<!--product1-->
+	<div class="row" style="height: 40px; margin-top: 10px; border:none;">
+		<div class="col-md-3 text-center">
+			<p class="circle">BP</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p class="text-center" style="margin:5px auto;" >Black pepper</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p style="margin:5px auto;">{{cbar[0]}}</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<button class="btn"  style="color: white; background: #ff2121; margin: 3px auto;" data-toggle="modal" data-target="#BP">Buy</button>
+		</div>
+	</div>
+	<!--product2-->
+	<div class="row" style="height: 40px; margin-top: 10px; border:none;">
+		<div class="col-md-3 text-center">
+			<p class="circle">TM</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p class="text-center" style="margin:5px auto;" >Turmeric </p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p style="margin:5px auto;">{{cbar[1]}}</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<button class="btn"  style="color: white; background: #ff2121; margin: 3px auto;" data-toggle="modal" data-target="#TM">Buy</button>
+		</div>
+	</div>
+	<!--product3-->
+	<div class="row" style="height: 40px; margin-top: 10px; border:none;">
+		<div class="col-md-3 text-center">
+			<p class="circle">CM</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p class="text-center" style="margin:5px auto;" >Cinnamon </p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p style="margin:5px auto;">{{cbar[2]}}</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<button class="btn"  style="color: white; background: #ff2121; margin: 3px auto; " data-toggle="modal" data-target="#CM">Buy</button>
+		</div>
+	</div>
+	<!--product4-->
+	<div class="row" style="height: 40px; margin-top: 10px; border:none;">
+		<div class="col-md-3 text-center">
+			<p class="circle">RC</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p class="text-center" style="margin:5px auto;" >Red chilly </p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p style="margin:5px auto;">{{cbar[3]}}</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<button class="btn"  style="color: white; background: #ff2121; margin: 3px auto;" data-toggle="modal" data-target="#RC">Buy</button>
+		</div>
+	</div>
+	<!--product5-->
+	<div class="row" style="height: 40px; margin-top: 10px; border:none;">
+		<div class="col-md-3 text-center">
+			<p class="circle">M</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p class="text-center" style="margin:5px auto;" >Mustard</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p style="margin:5px auto;">{{cbar[4]}}</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<button class="btn"  style="color: white; background: #ff2121; margin: 3px auto;" data-toggle="modal" data-target="#M">Buy</button>
+		</div>
+	</div>
+	<!--product6-->
+	<div class="row" style="height: 40px; margin-top: 10px; border:none;">
+		<div class="col-md-3 text-center">
+			<p class="circle">CL</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p class="text-center" style="margin:5px auto;" >Clove </p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p style="margin:5px auto;">{{cbar[5]}}</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<button class="btn"  style="color: white; background: #ff2121; margin: 3px auto;" data-toggle="modal" data-target="#CL">Buy</button>
+		</div>
+	</div>
+	<!--product7-->
+	<div class="row" style="height: 40px; margin-top: 10px; border:none;">
+		<div class="col-md-3 text-center">
+			<p class="circle">CU</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p class="text-center" style="margin:5px auto;" >Cumin</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p style="margin:5px auto;">{{cbar[6]}}</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<button class="btn"  style="color: white; background: #ff2121; margin: 3px auto;" data-toggle="modal" data-target="#CU">Buy</button>
+		</div>
+	</div>
+	<!--product8-->
+	<div class="row" style="height: 40px; margin-top: 10px; border:none;">
+		<div class="col-md-3 text-center">
+			<p class="circle">CP</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p class="text-center" style="margin:5px auto;" >Chickpea</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<p style="margin:5px auto;">{{cbar[7]}}</p>
+		</div>
+		<div class="col-md-3 text-center">
+			<button class="btn"  style="color: white; background: #ff2121; margin: 3px auto;" data-toggle="modal" data-target="#CP">Buy</button>
+		</div>
+	</div>
+  
+  
+</div>
+
+	<!-- block ends-->
+
+<!-- Modal BP -->
+<form method="post" action="{{url_for('send_request_warehouse')}}" enctype="multipart/form-data">
+<div class="modal fade" id="BP" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+		<center><h4 class="modal-title" >Orders</h4></center>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+          
+          <center>
+        <div class="modal-body">
+        
+          <div class="row">
+              <div class="col col-lg-4">
+                  <p class="fontstyle" style="float: left; margin-left: 10px;">Black pepper</p>
+                  <input style="display: none;" value="black pepper" name="pname">
+              </div>
+              <!---input count col-->
+              <div class="col-4" style="margin-left:50px;">
+                <div class="input-group">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-number" style="background:#ff2121;color:white;"  data-type="minus" data-field="">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
+            </span>
+            <input type="number"  name="quantity" pattern="[1-9]([0-9])*" class="quantity form-control input-number" value="0" min="1" title="min 1 order and not place more than available" max="{{cbar[0]}}">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn" style="background: #5cb85c; color:white;" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </span>
+        </div>
+        </div>
+              <!--- end input count col-->
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <div class="col col-lg-5">
+                <p class="fontstyle" style="float: left; margin-left: 10px;">Product Description</p>
+            </div>
+            <input style="margin-left:25px;" type="file"  name="description">
+            </div>
+
+        </div>
+              </center>
+         
+        <div class="modal-footer"><!--class="btn btn-default"-->
+            <button type="button" class="btn buttonStyle1" data-dismiss="modal">Decline</button>
+            <button  class="btn buttonStyle2" style="color:white;background:#5cb85c" >Confirm</button>
+            </form>
+
+          
+       </div>
+         </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal TM -->
+<form method="post" action="{{url_for('send_request_warehouse')}}" enctype="multipart/form-data">
+<div class="modal fade" id="TM" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+		  <center><h4 class="modal-title">Orders</h4></center>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+          
+          <center>
+        <div class="modal-body">
+        
+          <div class="row">
+              <div class="col col-lg-4">
+                  <p class="fontstyle" style="float: left; margin-left: 10px;">Turmeric</p>
+                  <input style="display: none;" value="turmeric" name="pname">
+              </div>
+              
+              <!---input count col-->
+              <div class="col-4" style="margin-left:50px;">
+                <div class="input-group">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-number" style="background:#ff2121;color:white;"  data-type="minus" data-field="">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
+            </span>
+            <input type="number"  name="quantity" pattern="[1-9]([0-9])*" class="quantity form-control input-number" value="0" min="1" title="min 1 order and not place more than available" max="{{cbar[1]}}">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn" style="background: #5cb85c; color:white;" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </span>
+        </div>
+        </div>
+              <!--- end input count col-->
+              
+            </div>
+            <div class="row" style="margin-top: 20px;">
+              <div class="col col-lg-5">
+                  <p class="fontstyle" style="margin-left: 15px;">Product Description</p>
+              </div>
+              <input style="margin-left:25px;" type="file"  name="description">
+              </div>
+  
+          </div>
+                </center>
+        
+         
+        <div class="modal-footer"><!--class="btn btn-default"-->
+            <button type="button" class="btn buttonStyle1" data-dismiss="modal">Decline</button>
+            <button  class="btn buttonStyle2" style="color:white;background:#5cb85c" >Confirm</button>
+            </form>
+
+          
+       </div>
+         </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal CM -->
+<form method="post" action="{{url_for('send_request_warehouse')}}" enctype="multipart/form-data">
+<div class="modal fade" id="CM" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+		  <center><h4 class="modal-title">Orders</h4></center>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+          
+          <center>
+        <div class="modal-body">
+        
+          <div class="row">
+              <div class="col col-lg-4">
+                  <p class="fontstyle" style="float: left; margin-left: 10px;">Cinnamon</p>
+                  <input style="display: none;" value="cinnamon" name="pname">
+              </div>
+              
+              <!---input count col-->
+              <div class="col-4" style="margin-left:50px;">
+                <div class="input-group">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-number" style="background:#ff2121;color:white;"  data-type="minus" data-field="">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
+            </span>
+            <input type="number"  name="quantity" pattern="[1-9]([0-9])*" class="quantity form-control input-number" value="0" min="1" title="min 1 order and not place more than available" max="{{cbar[2]}}">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn" style="background: #5cb85c; color:white;" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </span>
+        </div>
+        </div>
+              <!--- end input count col-->
+              
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <div class="col col-lg-5">
+                <p class="fontstyle" style="float: left; margin-left: 10px;">Product Description</p>
+            </div>
+            <input style="margin-left:25px;" type="file"  name="description">
+            </div>
+        </div>
+              </center>
+        
+         
+        <div class="modal-footer"><!--class="btn btn-default"-->
+            <button type="button" class="btn buttonStyle1" data-dismiss="modal">Decline</button>
+            <button  class="btn buttonStyle2" style="color:white;background:#5cb85c" >Confirm</button>
+            </form>
+
+          
+       </div>
+         </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal RC -->
+<form method="post" action="{{url_for('send_request_warehouse')}}" enctype="multipart/form-data">
+<div class="modal fade" id="RC" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+		  <center><h4 class="modal-title">Orders</h4></center>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+          
+          <center>
+        <div class="modal-body">
+        
+          <div class="row">
+              <div class="col col-lg-4">
+                  <p class="fontstyle" style="float: left; margin-left: 10px;">Red Chilly</p>
+                  <input style="display: none;" value="red chilly" name="pname">
+              </div>
+              
+              <!---input count col-->
+              <div class="col-4" style="margin-left:50px;">
+                <div class="input-group">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-number" style="background:#ff2121;color:white;"  data-type="minus" data-field="">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
+            </span>
+            <input type="number"  name="quantity" pattern="[1-9]([0-9])*" class="quantity form-control input-number" value="0" min="1" title="min 1 order and not place more than available" max="{{cbar[3]}}">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn" style="background: #5cb85c; color:white;" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </span>
+        </div>
+        </div>
+              <!--- end input count col-->
+              
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <div class="col col-lg-5">
+                <p class="fontstyle" style="float: left; margin-left: 10px;">Product Description</p>
+            </div>
+            <input style="margin-left:25px;" type="file"  name="description">
+            </div>
+        </div>
+              </center>
+        
+         
+        <div class="modal-footer"><!--class="btn btn-default"-->
+            <button type="button" class="btn buttonStyle1" data-dismiss="modal">Decline</button>
+            <button  class="btn buttonStyle2" style="color:white;background:#5cb85c" >Confirm</button>
+            </form>
+
+          
+       </div>
+         </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal M -->
+<form method="post" action="{{url_for('send_request_warehouse')}}" enctype="multipart/form-data">
+<div class="modal fade" id="M" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+		  <center><h4 class="modal-title">Orders</h4></center>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+          
+          <center>
+        <div class="modal-body">
+        
+          <div class="row">
+              <div class="col col-lg-4">
+                  <p class="fontstyle" style="float: left; margin-left: 10px;">Mustard</p>
+                  <input style="display: none;" value="mustard" name="pname">
+              </div>
+              
+              <!---input count col-->
+              <div class="col-4" style="margin-left:50px;">
+                <div class="input-group">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-number" style="background:#ff2121;color:white;"  data-type="minus" data-field="">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
+            </span>
+            <input type="number"  name="quantity" pattern="[1-9]([0-9])*" class="quantity form-control input-number" value="0" min="1" title="min 1 order and not place more than available" max="{{cbar[4]}}">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn" style="background: #5cb85c; color:white;" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </span>
+        </div>
+        </div>
+              <!--- end input count col-->
+              
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <div class="col col-lg-5">
+                <p class="fontstyle" style="float: left; margin-left: 10px;">Product Description</p>
+            </div>
+            <input style="margin-left:25px;" type="file"  name="description">
+            </div>
+        </div>
+              </center>
+        
+         
+        <div class="modal-footer"><!--class="btn btn-default"-->
+            <button type="button" class="btn buttonStyle1" data-dismiss="modal">Decline</button>
+            <button  class="btn buttonStyle2" style="color:white;background:#5cb85c" >Confirm</button>
+            </form>
+
+          
+       </div>
+         </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal CL -->
+<form method="post" action="{{url_for('send_request_warehouse')}}" enctype="multipart/form-data">
+<div class="modal fade" id="CL" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+		  <center><h4 class="modal-title">Orders</h4></center>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+          
+          <center>
+        <div class="modal-body">
+        
+          <div class="row">
+              <div class="col col-lg-4">
+                  <p class="fontstyle" style="float: left; margin-left: 10px;">Clove</p>
+                  <input style="display: none;" value="clove" name="pname">
+              </div>
+              
+              <!---input count col-->
+              <div class="col-4" style="margin-left:50px;">
+                <div class="input-group">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-number" style="background:#ff2121;color:white;"  data-type="minus" data-field="">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
+            </span>
+            <input type="number"  name="quantity" pattern="[1-9]([0-9])*" class="quantity form-control input-number" value="0" min="1" title="min 1 order and not place more than available" max="{{cbar[5]}}">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn" style="background: #5cb85c; color:white;" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </span>
+        </div>
+        </div>
+              <!--- end input count col-->
+              
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <div class="col col-lg-5">
+                <p class="fontstyle" style="float: left; margin-left: 10px;">Product Description</p>
+            </div>
+            <input style="margin-left:25px;" type="file"  name="description">
+            </div>
+        </div>
+              </center>
+        
+         
+        <div class="modal-footer"><!--class="btn btn-default"-->
+            <button type="button" class="btn buttonStyle1" data-dismiss="modal">Decline</button>
+            <button  class="btn buttonStyle2" style="color:white;background:#5cb85c" >Confirm</button>
+            </form>
+
+          
+       </div>
+         </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal CU -->
+<form method="post" action="{{url_for('send_request_warehouse')}}" enctype="multipart/form-data">
+<div class="modal fade" id="CU" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+		  <center><h4 class="modal-title">Orders</h4></center>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+          
+          <center>
+        <div class="modal-body">
+        
+          <div class="row">
+              <div class="col col-lg-4">
+                  <p class="fontstyle" style="float: left; margin-left: 10px;">Cumin</p>
+                  <input style="display: none;" value="cumin" name="pname">
+              </div>
+              
+              <!---input count col-->
+              <div class="col-4" style="margin-left:50px;">
+                <div class="input-group">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-number" style="background:#ff2121;color:white;"  data-type="minus" data-field="">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
+            </span>
+            <input type="number"  name="quantity" pattern="[1-9]([0-9])*" class="quantity form-control input-number" value="0" min="1" title="min 1 order and not place more than available" max="{{cbar[6]}}">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn" style="background: #5cb85c; color:white;" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </span>
+        </div>
+        </div>
+              <!--- end input count col-->
+              
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <div class="col col-lg-5">
+                <p class="fontstyle" style="float: left; margin-left: 10px;">Product Description</p>
+            </div>
+            <input style="margin-left:25px;" type="file"  name="description">
+            </div>
+        </div>
+              </center>
+        
+         
+        <div class="modal-footer"><!--class="btn btn-default"-->
+            <button type="button" class="btn buttonStyle1" data-dismiss="modal">Decline</button>
+            <button  class="btn buttonStyle2" style="color:white;background:#5cb85c" >Confirm</button>
+            </form>
+
+          
+       </div>
+         </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal BP -->
+<form method="post" action="{{url_for('send_request_warehouse')}}" enctype="multipart/form-data">
+<div class="modal fade" id="CP" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+		  <center><h4 class="modal-title">Orders</h4></center>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+          
+          <center>
+        <div class="modal-body">
+        
+          <div class="row">
+              <div class="col col-lg-4">
+                  <p class="fontstyle" style="float: left; margin-left: 10px;">Chick pea</p>
+                  <input style="display: none;" value="chick pea" name="pname">
+              </div>
+              
+              <!---input count col-->
+              <div class="col-4" style="margin-left:50px;">
+                <div class="input-group">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-number" style="background:#ff2121;color:white;"  data-type="minus" data-field="">
+                  <span class="glyphicon glyphicon-minus"></span>
+                </button>
+            </span>
+            <input type="number" pattern="[1-9]([0-9])*"  name="quantity" class="quantity form-control input-number" value="0" min="1" title="min 1 order and not place more than available" max="{{cbar[7]}}">
+            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn" style="background: #5cb85c; color:white;" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </span>
+        </div>
+        </div>
+              <!--- end input count col-->
+              
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <div class="col col-lg-5">
+                <p class="fontstyle" style="float: left; margin-left: 10px;">Product Description</p>
+            </div>
+            <input style="margin-left:25px;" type="file"  name="description">
+            </div>
+        </div>
+              </center>
+        
+         
+        <div class="modal-footer"><!--class="btn btn-default"-->
+            <button type="button" class="btn buttonStyle1" data-dismiss="modal">Decline</button>
+            <button  class="btn buttonStyle2" style="color:white;background:#5cb85c" >Confirm</button>
+            </form>
+
+          
+       </div>
+         </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>
+
+<style>
+.circle {
+  width:36px;
+  height: 36px;
+  padding-top: 6px;
+  border-radius: 50%;
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  background: #ff2121;
+  margin: 1px auto;
+}
+    
+    .buttonStyle1 {
+  background-color: #ff2121; /* Red */
+  border: none;
+  color: white;
+  padding: 12px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+}
+
+.buttonStyle2 {
+  background-color: #228B22; /* Green */
+  border: none;
+  color: white;
+  padding: 12px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+}
+ 
+.fontstyle{
+    font-size:17px;
+    font-family: sans-serif;
+    color: black;
+}
+ .modal-title
+ {
+	 margin-top: 40px;
+ }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+</style>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+  $(document).ready(function (e) {
+			$("#profilebutton").click(function (e) {
+				$("#profilecontent").toggle();
+			});
+		});
+
+  $(document).ready(function(){
+  
+    var quantitiy=0;
+       $('.quantity-right-plus').click(function(e){
+            
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field namey
+            var quantity = parseInt($('.quantity').val());
+            
+            // If is not undefined
+                
+                $('.quantity').val(quantity + 1);
+    
+              
+                // Increment
+            
+        });
+    
+         $('.quantity-left-minus').click(function(e){
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            var quantity = parseInt($('.quantity').val());
+            
+            // If is not undefined
+          
+                // Increment
+                if(quantity>0){
+                $('.quantity').val(quantity - 1);
+                }
+        });
+        
+    });
+  
+  </script>
+
+{%  endblock  %}

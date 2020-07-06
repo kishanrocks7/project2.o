@@ -1,0 +1,68 @@
+{% extends 'warehouse_dashboard.html' %}
+{% block slider %}
+{% endblock %}
+{% block content %}
+<!-- add team member-->
+<div class="container">
+    {% with msg = get_flashed_messages() %}
+    {% if msg %}
+    <h5 style="margin-bottom: 30px; margin-top: 30px; text-align: center; color: #ff2121;">{{msg[0]}}</h5>
+    {% endif %}
+    {% endwith %}
+    <div class="row justify-content-center">
+    
+        <button class="b_center" type="button"  data-toggle="modal" data-target="#addteammember">Add new Team Member</button>
+    </div>
+</div>
+
+
+<!--modal for team member addition-->
+<div class="modal fade" id="addteammember" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add New Team Member</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form action="{{url_for('add_member')}}" method="post" enctype="multipart/form-data">
+
+          <div class="form-group">
+            <label for="Name">Member Name</label>
+            <input id="Name" type="text" name="name" class="form-control" placeholder="Member Name.." required>
+          </div>
+          
+          <div class="form-group">
+            <label for="position">Position</label>
+            <input id="position" type="text" name="position" class="form-control" placeholder="Enter member Position.." required>
+          </div>
+    
+          <div class="form-group">
+            <label for="message">Team member message</label>
+            <textarea id="address" type="text" name="msg" class="form-control" rows="14"
+              placeholder="Enter Team Member message..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="image">Select Member Image</label>
+            <input id="memberimg" type="file" name="memberimg" required>
+          </div>
+        
+
+
+      </div>
+      <div class="form-group text-center">
+
+        <button class="btn " style="text-align: center;color:white; padding: 10px; background-color: #ff2121;">Add new
+          member</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

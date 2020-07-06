@@ -1,0 +1,196 @@
+{% extends 'Outlet/outlet_home.html' %}
+{% block content %}
+
+<!--profile-->
+
+<div id="colorlib-about" style="background-color: rgba(220,220,220,0.3); ">
+	<div class="container"">
+		{% if profmsg %}
+		<h5 style="text-align: center;color: #ff2121; margin-bottom: 30px;">{{profmsg}}</h5>
+		{% endif %}
+		<h1 style="text-align: center;color: #ff2121; margin-bottom: 50px;">Profile</h1>
+		{% if pdata %}
+		{% for profdata in pdata%}
+		<div class="row">
+			<form action="{{url_for('outlet_profile')}}" method="post" class="outletprofileform" enctype="multipart/form-data" id="profform"></form>
+			<div class="col-md-6 col-md-push-6 animate-box ">
+				{% if profdata[1] %}
+				<img class="img-responsive about-img" src="../static/photos/{{profdata[1]}}" alt=""
+					style="max-width: 829px; max-height: 669px; margin-top: 50px;">
+					{% endif %}
+				<input form="profform" type="file" class="wareimgupload" name="outletimg" style="display: none;" readonly>
+			</div>
+			
+			<div class="col-md-6 col-md-pull-6 ">
+				<div class="fancy-collapse-panel">
+					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingOne">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+										aria-expanded="true" aria-controls="collapseOne">Outlet Type
+									</a>
+								</h4>
+							</div>
+							<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+								aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                        <select form="profform" class="otype form-control" name="otype" disabled required>
+                                            <option value="{{profdata[3]}}" selected>{{profdata[3]}}</option>
+                                            <option value="Individual">Individual</option>
+                                            <option value="Small Outlet">Small Outlet</option>
+                                            <option value="Large Outlet">Large Outlet</option>
+                                          </select>
+                                          <style>
+                                            select:disabled
+                                            {
+                                                border: none;
+                                                box-shadow: none;
+                                                background-color: white;
+                                                appearance: none;
+                                            }                
+                                            </style>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingTwo">
+								<h4 class="panel-title">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+										href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Manager
+										Name
+									</a>
+								</h4>
+							</div>
+							<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+								aria-labelledby="headingTwo">
+								<div class="panel-body">
+									<input form="profform" value="{{profdata[4]}}" class="manname form-control" type="text"
+										name="manname" style="border: none; background-color: white;box-shadow: none;"
+										readonly required>
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingThree">
+								<h4 class="panel-title">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+										href="#collapseThree" aria-expanded="false"
+										aria-controls="collapseThree">Manager Email
+									</a>
+								</h4>
+							</div>
+							<div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+								aria-labelledby="headingThree">
+								<div class="panel-body">
+									<input form="profform" value="{{profdata[6]}}" class="manemail form-control" type="manemail"
+										name="manemail" style="border: none;background-color: white;box-shadow: none;"
+										readonly required>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingFive">
+								<h4 class="panel-title">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+										href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Phone
+										Number
+									</a>
+								</h4>
+							</div>
+							<div id="collapseFive" class="panel-collapse collapse" role="tabpanel"
+								aria-labelledby="headingFive">
+								<div class="panel-body">
+									<input form="profform" value="{{profdata[5]}}" class="contactno form-control" type="text"
+										name="manno" pattern="[6789][0-9]{9}" maxlength="10"
+										style="border: none; background-color: white;box-shadow: none;" required
+										readonly>
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingSix">
+								<h4 class="panel-title">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+										href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">Outlet
+										Address
+									</a>
+								</h4>
+							</div>
+							<div id="collapseSix" class="panel-collapse collapse" role="tabpanel"
+								aria-labelledby="headingSix">
+								<div class="panel-body">
+									<textarea form="profform" class="wareaddress form-control" type="text" name="address" rows="3"
+										style="border: none; background-color: white;box-shadow: none;" required
+										readonly>{{profdata[7]}}</textarea>
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingSeven">
+								<h4 class="panel-title">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+										href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">CIN
+										Number
+									</a>
+								</h4>
+							</div>
+							<div id="collapseSeven" class="panel-collapse collapse" role="tabpanel"
+								aria-labelledby="headingSeven">
+								<div class="panel-body">
+									<input form="profform" class="isonum form-control" type="text" name="cinnum"
+										style="border: none; background-color: white;box-shadow: none;" readonly
+										{% if profdata[8] %} value="{{profdata[8]}}" {% endif %}>
+								</div>
+							</div>
+						</div>
+
+						<!--buttons-->
+						<div class="form-group text-center">
+							<button form="profform" class="savewarehouseprofile btn  " style="text-align: center;color:white; padding: 10px; background-color: #ff2121; display: none; margin-top: 40px; width: 250px;">Save
+								Edited Profile
+							</button><br>
+							<button class="editwarehouseprofile btn  " type="button"
+								style="text-align: center;color:white; padding: 10px; background-color: #ff2121; margin-top: 40px; width: 250px;">Edit
+								profile
+							</button><br>
+							<a href="change_outlet_password">
+								<button class="changewarehousePassword btn"
+									type="button"
+									style="text-align: center;color:white; padding: 10px; background-color: #ff2121; margin-top: 40px; width: 250px;">Change
+									Password
+								</button> </a>
+						</div>
+						<!--buttonsend-->
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}
+{% block scripts %}
+<script>
+    $(document).ready(function (e) {
+			$('.editwarehouseprofile').click(function () {
+				$('.savewarehouseprofile').show();
+				$('.changewarehousePassword').hide();
+				$('.editwarehouseprofile').hide();
+				$('.wareimgupload').show();
+                $('.otype').removeAttr('disabled')
+				$('.manname,.manemail,.compno,.contactno,.wareaddress,.wareimgupload,.isonum')
+					.removeAttr('readonly');
+				$('.manname,.manemail,.compno,.contactno,.wareaddress,.wareimgupload,.isonum')
+					.removeAttr('style');
+			});
+		});
+</script>
+{% endblock %}

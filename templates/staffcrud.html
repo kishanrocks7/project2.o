@@ -1,0 +1,345 @@
+{% extends 'warehouse_dashboard.html' %}
+
+{% block content %}
+  <br>
+  <br><br>
+  <br>
+  
+
+<!--Commodities Available-->
+<br><br><br><br><br>
+<div id="colorlib-counter" class="colorlib-counters">
+<div class="overlay"></div>
+<div class="container">
+              <table class="table">
+<thead>
+<tr>
+  <th scope="col"><div class="desc">
+          <p><span class="colorlib-counter js-counter" data-from="0" data-to="321" data-speed="7000" data-refresh-interval="50"></span></p>
+          <span class="colorlib-counter-label" style="color:white; font-size:20px;">Black Pepper</span>
+</div></th>
+<th scope="col"><div class="desc">
+        <p><span class="colorlib-counter js-counter" data-from="0" data-to="300" data-speed="7000" data-refresh-interval="50"></span></p>
+<span class="colorlib-counter-label" style="color:white; font-size:20px;">Turmeric</span>
+  </div></th>
+<th scope="col"><div class="desc">
+        <p><span class="colorlib-counter js-counter" data-from="0" data-to="123" data-speed="7000" data-refresh-interval="50"></span></p>
+<span class="colorlib-counter-label" style="color:white; font-size:20px;">Cinnamon</span>
+  </div></th>
+<th scope="col"><div class="desc">
+        <p><span class="colorlib-counter js-counter" data-from="0" data-to="221" data-speed="7000" data-refresh-interval="50"></span></p>
+<span class="colorlib-counter-label" style="color:white; font-size:20px;">Red Chilly</span>
+  </div></th>
+<th scope="col"><div class="desc">
+        <p><span class="colorlib-counter js-counter" data-from="0" data-to="106" data-speed="7000" data-refresh-interval="50"></span></p>
+    <span class="colorlib-counter-label" style="color:white; font-size:20px;">Mustard</span>
+  </div></th>
+<th scope="col"><div class="desc">
+        <p><span class="colorlib-counter js-counter" data-from="0" data-to="100" data-speed="7000" data-refresh-interval="50"></span></p>
+    <span class="colorlib-counter-label" style="color:white; font-size:20px;">Clove</span>
+    </div></th>                         
+
+  <th scope="col"><div class="desc">
+          <p><span class="colorlib-counter js-counter" data-from="0" data-to="132" data-speed="7000" data-refresh-interval="50"></span></p>
+          <span class="colorlib-counter-label" style="color:white; font-size:20px;">Cumin</span>
+</div></th>
+<th scope="col"><div class="desc">
+        <p><span class="colorlib-counter js-counter" data-from="0" data-to="111" data-speed="7000" data-refresh-interval="50"></span></p>
+<span class="colorlib-counter-label" style="color:white; font-size:20px;">Chick Pea</span>
+  </div></th>
+                          
+</tr>
+</thead>
+</table>
+
+    </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+  
+  
+        
+        
+						    
+<!--   CRUD start from here..     -->
+        
+<section id="curd-border-area">
+    <div id="main-curd-area">
+        <div id="data-curd">
+            <div class="main-content">
+                
+                <form id="form">
+                  
+                    
+                      <input name="name" placeholder="Name">
+                      <input placeholder="Email">
+                      <input placeholder="Contact">
+      
+                    <button id="add-button">
+                        <!-- <i class="fas fa-plus plus-sign"></i> -->
+                        ADD
+                    </button>
+                </form>
+            </div>
+            <div class="main-content">
+                <div class="container-fluid content-header">
+                   <div class="row">
+                          <div class="col item-area">
+                             <div class="item-name">
+                              Name
+                                 <span>
+                                    <i class="fas fa-caret-up"></i>
+                                     <i class="fas fa-caret-down"></i>
+                                 </span>
+                            </div>
+                          </div>
+                             <div class="col item-area">
+                                <div class="item-name">
+                                 Email
+                                    <span>
+                                    <i class="fas fa-caret-up"></i>
+                                     <i class="fas fa-caret-down"></i>
+                                 </span>
+                                </div>
+                            </div>
+                          <div class="col item-area">
+                                <div class="item-name">
+                                 Contact
+                                    <span>
+                                    <i class="fas fa-caret-up"></i>
+                                     <i class="fas fa-caret-down"></i>
+                                 </span>
+                                </div>
+                            </div>
+                       <div class="col item-area">
+                                <div class="item-name">
+                                 Actions
+                                </div>
+                            </div>
+                   </div>
+               </div>
+            </div>
+            
+            
+            <div class="container-fluid all-data-item">
+  <div class="row">
+    <div class="col item-area items-data">
+      <div>
+        Alok  
+      </div>
+    </div>
+    <div class="col item-area items-data">
+      akmtanda
+    </div>
+      <div class="col item-area items-data">
+      7607863214
+    </div>
+      <div class="col item-area items-data">
+             <div class="container-fluid">
+  <div class="row">
+    <div class="col actions">
+        <div>
+            <a href="#">
+            <i class="far fa-edit"></i>
+        </a>
+        </div>
+    </div>
+    <div class="col actions">
+      <div>
+        <a href="#">
+          <i class="fas fa-trash-alt"></i>
+      </a>    
+        </div>
+    </div>
+     
+      
+  </div>
+</div>
+    </div>
+  </div>
+</div>  
+           
+         <div class="container-fluid all-data-item">
+  <div class="row">
+    <div class="col item-area items-data">
+      <div>
+        Alok  
+      </div>
+    </div>
+    <div class="col item-area items-data">
+      akmtanda
+    </div>
+      <div class="col item-area items-data">
+      7607863214
+    </div>
+      <div class="col item-area items-data">
+             <div class="container-fluid">
+  <div class="row">
+    <div class="col actions">
+        <div>
+            <a href="#">
+            <i class="far fa-edit"></i>
+        </a>
+        </div>
+    </div>
+    <div class="col actions">
+      <div>
+        <a href="#">
+          <i class="fas fa-trash-alt"></i>
+      </a>    
+        </div>
+    </div>
+     
+      
+  </div>
+</div>
+    </div>
+  </div>
+</div>  
+            <div class="container-fluid all-data-item">
+  <div class="row">
+    <div class="col item-area items-data">
+      <div>
+        Alok  
+      </div>
+    </div>
+    <div class="col item-area items-data">
+      akmtanda
+    </div>
+      <div class="col item-area items-data">
+      7607863214
+    </div>
+      <div class="col item-area items-data">
+             <div class="container-fluid">
+  <div class="row">
+    <div class="col actions">
+        <div>
+            <a href="#">
+            <i class="far fa-edit"></i>
+        </a>
+        </div>
+    </div>
+    <div class="col actions">
+      <div>
+        <a href="#">
+          <i class="fas fa-trash-alt"></i>
+      </a>    
+        </div>
+    </div>
+     
+      
+  </div>
+</div>
+    </div>
+  </div>
+</div>  
+            <div class="container-fluid all-data-item">
+  <div class="row">
+    <div class="col item-area items-data">
+      <div>
+        Alok  
+      </div>
+    </div>
+    <div class="col item-area items-data">
+      akmtanda
+    </div>
+      <div class="col item-area items-data">
+      7607863214
+    </div>
+      <div class="col item-area items-data">
+             <div class="container-fluid">
+  <div class="row">
+    <div class="col actions">
+        <div>
+            <a href="#">
+            <i class="far fa-edit"></i>
+        </a>
+        </div>
+    </div>
+    <div class="col actions">
+      <div>
+        <a href="#">
+          <i class="fas fa-trash-alt"></i>
+      </a>    
+        </div>
+    </div>
+     
+      
+  </div>
+</div>
+    </div>
+  </div>
+</div>  
+            <div class="container-fluid all-data-item">
+  <div class="row">
+    <div class="col item-area items-data">
+      <div>
+        Alok  
+      </div>
+    </div>
+    <div class="col item-area items-data">
+      akmtanda
+    </div>
+      <div class="col item-area items-data">
+      7607863214
+    </div>
+      <div class="col item-area items-data">
+             <div class="container-fluid">
+  <div class="row">
+    <div class="col actions">
+        <div>
+            <a href="#">
+            <i class="far fa-edit"></i>
+        </a>
+        </div>
+    </div>
+    <div class="col actions">
+      <div>
+        <a href="#">
+          <i class="fas fa-trash-alt"></i>
+      </a>    
+        </div>
+    </div>
+     
+      
+  </div>
+</div>
+    </div>
+  </div>
+</div>  
+            
+            <div>
+                <nav aria-label="Page navigation example">
+  <ul class="pagination ml-4 my-pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+            </div>
+            
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</section>
+        
+
+{% endblock %}

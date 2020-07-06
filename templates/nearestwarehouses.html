@@ -1,0 +1,58 @@
+{% extends 'warehouse_dashboard.html' %}
+
+{% block content %}
+<div id="colorlib-blog">
+    <div class="container">
+        <div class="row animate-box">
+            <div class="col-md-6 col-md-offset-3 text-center colorlib-heading">
+                <h2 style="color: black;">Nearest Warehouses</h2>
+                
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-4 animate-box text-center">
+                <div class="blog-entry car" style="box-shadow: 0px 11px 40px -13px#0A0819; ">
+					<a class="blog-img" style="background-image: url(../static/images/images1.jpg); "></a>
+					
+					  
+					  <div class="module mid">
+						
+					  </div>
+					  
+                    <div class="desc adata">
+                        <P>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In assumenda impedit beatae aspernatur corporis itaque eveniet aliquid quod, aperiam non quis nostrum tempore corrupti, nam odio rem libero ipsum rerum.</P>
+					</div>
+					
+				</div>
+				<a href="{{url_for('warehouse_products')}}"><button class="b_center">APPLE</button></a>
+            </div>
+            <div class="col-md-4 animate-box text-center">
+                <div class="blog-entry car" style="box-shadow: 0px 11px 40px -13px#0A0819; ">
+					<a href="#" class="blog-img" style="background-image: url(../static/images/images3.jpg);"></a>
+					<div class="module mid">
+						
+					  </div>
+                    <div class="desc adata">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit excepturi omnis ipsum neque hic facilis nam reprehenderit esse, saepe repellendus alias dolore veniam, magni delectus qui atque iure quam necessitatibus.</p>
+                        
+                    </div>
+				</div>
+				<a href="{{url_for('warehouse_products')}}"><button class="b_center">AMAZON</button></a>
+            </div>
+            <div class="col-md-4 animate-box text-center">
+                <div class="blog-entry car " style="box-shadow: 0px 11px 40px -13px#0A0819; ">
+					<a href="#" class="blog-img" style="background-image: url(../static/images/images4.jpg);box-shadow: 0px 11px 40px -13px #0A0819;"></a>
+					<div class="module mid">
+					  </div>
+                    <div class="desc adata">
+                        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur pariatur dolores quibusdam commodi temporibus rem neque corrupti alias laboriosam? Doloremque ut dolor deserunt provident id deleniti laboriosam eligendi velit nobis?</P>
+                        
+                    </div>
+				</div>
+				<a href="{{url_for('warehouse_products')}}"><button class="b_center">FLIPKART</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

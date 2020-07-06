@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+{% block countingbar %}
+{% endblock %}
+{% block slider %}
+{% endblock %}
+{% block content %}
+<!-- register form -->
+	<div id="colorlib-choose">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="choose">
+					<div class="half img-bg" style="background-image: url(../static/images/latest_2.jpg);"></div>
+					<div class="half features-wrap">
+						<div class="features-services animate-box">
+							<div class="row">
+								{% with msg = get_flashed_messages() %}
+											 {% if msg %}
+											 <h5 style="text-align: center;color: #ff2121; margin-bottom: 30px;">{{ msg[0] }}</h5>
+											 {% endif %}
+											 {% endwith %}
+
+								<h1 style="text-align: center;color: #ff2121;">Forgot Password</h1>
+								
+								<div style="width: 50%; margin: 25px auto;font-family: 'Montserrat', sans-serif;">
+					
+								<form action="{{url_for('blogger_forgot_password')}}" method="POST">
+										
+										<br>
+										<div class="form-group">
+											<label for="email"><strong>Email</strong> </label>
+											<input type="email" id="email" name="email" class="form-control" placeholder="Enter email ... " required >
+										</div>
+
+			
+										<br><br>
+										<div class="form-group text-center">
+											<button class="button button-login btn-block register_button"  >Forgot Password</button>
+										</div>
+					
+				
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><br><br><br>
+{% block organisation %}
+{% endblock %}
+{% block blogs %}
+{% endblock %}
+{% endblock %}

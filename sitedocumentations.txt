@@ -1,0 +1,102 @@
+Basic Functionalities ->
+--------------------------------------------------------------------------
+1. Dynamic slider -> Admin can put 4 photos and a quote for each of them.
+2. Team Message -> Dynamically we can put the team Message.
+3. Riview -> Clients can add Riview.
+4. SupportSection -> customer can make an appointemnt if he is facing any problem.
+5. Recent Blog section -> Last 3 recent blogs will be shown here.
+6. FAQ setion -> user can ask question post answer and admin can add answers and questions.
+-------------------------------------------------------------------------
+
+Main Functionalities ->
+--------------------------------------------------------------------------------------
+1. blogs
+--------
+--------
+--> There is a blogger section.
+- User can create profile as blogger.
+        - sign up page for a blogger
+        - login page for a blogger
+        - forgot password page as a blogger
+                - on this user get a temporary password which user can change after login.
+- After logging into that -
+        - user can add blogs-
+                - This user has right to edit and delete there blog.
+        - user can comment on any blog-
+                - A user can delete his comment.
+        - profile section
+                - user can view his profile 
+                - Edit his profile(also add the profile pic)
+                - change password
+
+2. Warehouse
+------------
+------------
+--> Warehouse section.
+- Manager can register the warehouse.
+        - After register manager receive a unique id which will be used for login.
+        - Login page
+        - Forgot Password page
+- After login there is a dashboard which include the service for producer
+- on producer page -
+        - There is a countbar which show count of all the commodiies present in the warehouse
+        - There is a table which contain all the list of producer which some action
+                - Edit action (a popup will appear to edit the producer)
+                - Delete action
+        - There is a button to add a new producer (a popup will appear for that)
+        - search option is also present
+                - You can either search by name or email
+- Profile section -
+        - user can view his profile 
+        - Edit his profile(also add the profile pic)
+        - change password
+- Notification -
+        - warehouse manager will recieve the notification whenever an outlet order for some commodity
+        - If he accept the order the order accept message is sent to outlet
+        - If he reject the order than there is a popup asking for the reason for rejection and sent same to the outlet.
+- While registering the page ask to access the warehouse location 
+
+
+3. Outlets
+----------
+----------
+--> Outlet section
+- Manager can register the outlet.
+        - After register manager receive a unique id which will be used for login.
+        - Login page
+        - Forgot Password page
+- After login there is a dashboard which include the three services -
+        - Clients
+        - Nearest Warehouse
+        - Staff
+- Staff section -
+        - Here manager can add the list of Staff(a popup appear for that)
+        - List will be appearn in tabular form with some action like 
+                - edit Staff(A popup appear for that)
+                - Delete Staff
+        - There is a searchbar also present to search in the table
+- Client section -
+        - It contain the list fo all the Client
+        - data is shown in tabular format
+        - Manager can add a Client(A popup appear for that)
+        - There are some associated with every client like -
+                - Edit info(A popup appear for that)
+                - Delete 
+        - There is also a serachbar present to search in the clients table
+- Nearest Warehouse -
+        - This service redirect to the nearest warehouse present for that outlet
+        - Here the manager can order the commodities from the warehouse
+                - A popup will appear where manager can select the number of commodity and also add description as a image.
+- Profile section -
+        - user can view his profile 
+        - Edit his profile(also add the profile pic)
+        - change password
+- Notification -
+        - Outlet will recieve the notification whenever the warehouse accept or reject the order.
+        - If warehouse accept the order than the notification will be green in color.
+        - If warehouse reject the order than the notification will be red in color.
+                - And on click on it the there is a popup which show the reason for cancel of order.
+- While registering the page ask to access the warehouse location               
+    
+
+------ All the user information is in encrypted format -----------

@@ -1,0 +1,107 @@
+{% extends 'index.html' %}
+{% block countingbar %}
+{% endblock %}
+{% block content %}
+ <!-- register form -->
+ <div id="colorlib-choose">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="choose">
+				<div class="half img-bg" style="background-image: url(../static/images/latest_2.jpg);"></div>
+				<div class="half features-wrap">
+					<div class="features-services animate-box">
+						<div class="row">
+							{% if failuremsg %}
+												<h5 style="text-align: center;color: #ff2121; margin-bottom: 30px;">{{failuremsg}}</h5>
+												{% endif %}
+												{% with msg = get_flashed_messages() %}
+											 {% if msg %}
+											 <h5 style="text-align: center;color: #ff2121; margin-bottom: 30px;">{{ msg[0] }}</h5>
+											 {% endif %}
+											 {% endwith %}
+							<h1 style="text-align: center;color: #ff2121;">Sign Up</h1>
+							<div style="width: 50%; margin: 25px auto;font-family: 'Montserrat', sans-serif;">
+								<form action="{{url_for('outlet_register')}}" method="post">
+									<div class="form-group">
+										<label for="outlettype">Outlet type</label>
+										<select class="form-control" name="type" id="outlettype">
+										  <option value="Individual">Individual</option>
+										  <option value="Small Outlet">Small Outlet</option>
+										  <option value="Large Outlet">Large Outlet</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="managername">Manager Name </label>
+										<input id="managername" type="text" name="managername" class="form-control" placeholder="Manager name.." required>
+									</div>
+									<div class="form-group">
+										<label for="email">Email </label>
+										<input id="email"  type="email" name="email" class="form-control" placeholder="Your email.." required>
+									</div>
+									<div class="form-group">
+										<label for="phoneNumber">Contact Number </label>
+										<input id="phoneNumber"  type="text" name="phoneNumber" pattern="[6789][0-9]{9}" class="form-control" maxlength="10" placeholder="Contact Number.." required>
+									</div>
+									<div class="form-group">
+										<label for="address">Address </label>
+										<textarea id="address"  type="text" name="address" class="form-control" rows="3" placeholder="Address.." required></textarea>
+									</div>
+									<div class="form-group">
+										<label for="cinno">CIN Number </label>
+										<input id="cinno" type="text" name="cinno" class="form-control" placeholder="CIN Number.." required>
+									</div>
+									<div class="form-group">
+										<label for="password">Password </label>
+										<input id="password"  type="password" name="password" class="form-control" placeholder="Enter a strong password.." required>
+									</div>
+									<div class="form-group">
+										<label for="confirmpassword">Confirm Password </label>
+										<input id="confirmpassword"  type="password" name="confirmpassword" class="form-control" placeholder="Re-enter password.." required>
+									</div>
+									<div class="form-group">
+										<input id="longitude"  type="text" name="longitude" class="form-control" style="display: none;">
+									</div>
+									<div class="form-group">
+										<input id="latitude"  type="text" name="latitude" class="form-control" style="display: none;">
+									</div>
+									<div class="form-group text-center">
+																				
+																					<button class="button button-submit btn-block register_button">Sign Up</button>
+									
+																			</div>
+									<div class="text-center">
+										<h5 class="have">Have an account? <a class="red" href="{{url_for('outlet_dashboard')}}">Sign In</a></h5>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><br><br><br>
+
+{% endblock %}
+
+{% block blogs %}
+{% endblock %}
+{% block organisation %}
+{% endblock %}
+{% block scripts %}
+<script>
+	
+	$(document).ready(function(){
+		if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition);
+	  	}
+	});
+	
+	function showPosition(position) {
+		$('#longitude').val(position.coords.longitude);
+		$('#latitude').val(position.coords.latitude);
+	  
+	} 
+	
+</script>
+{% endblock %}

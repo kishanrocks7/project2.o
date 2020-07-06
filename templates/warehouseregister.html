@@ -1,0 +1,110 @@
+{% extends 'index.html' %}
+{% block content %}
+
+
+<!-- register form -->
+	<div id="colorlib-choose">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="choose">
+					<div class="half img-bg" style="background-image: url(../static/images/latest_2.jpg);"></div>
+					<div class="half features-wrap">
+						<div class="features-services animate-box">
+							<div class="row">
+								{% if failuremsg %}
+												<h5 style="text-align: center;color: #ff2121; margin-bottom: 30px;">{{failuremsg}}</h5>
+												{% endif %}
+												{% with msg = get_flashed_messages() %}
+											 {% if msg %}
+											 <h5 style="text-align: center;color: #ff2121; margin-bottom: 30px;">{{ msg[0] }}</h5>
+											 {% endif %}
+											 {% endwith %}
+											 <h5 style="text-align: center;color: #ff2121; margin-bottom: 30px;" id="errmsg"></h5>
+								<h1 style="text-align: center;color: #ff2121;">Sign Up</h1>
+								<div style="width: 50%; margin: 25px auto;font-family: 'Montserrat', sans-serif;">
+									<form action="{{ url_for('warehouse_register') }}" method="post">
+										<div class="form-group">
+											<label for="warehouseName">Warehouse Name <span class="star">&#9733;</span></label>
+											<input id="warehouseName" type="text" name="warehouseName"   class="form-control" placeholder="Warehouse Name.." required>
+										</div>
+										<div class="form-group">
+											<label for="managerName">Manager Name <span class="star">&#9733;</span></label>
+											<input id="managerName"  type="text" name="managerName" class="form-control" placeholder="Warehouse Manager Name.." required>
+										</div>
+										<div class="form-group">
+											<label for="email">Email <span class="star">&#9733;</span></label>
+											<input id="email"  type="email" name="email" class="form-control"  placeholder="E-mail.." required>
+										</div>
+										<div class="form-group">
+											<label for="companyNumber">Company Number <span class="star">&#9733;</span></label>
+											<input id="companyNumber"  type="text" name="companyNumber" pattern="[6789][0-9]{9}" class="form-control" maxlength="10" placeholder="Company Contact Number.." required>
+										</div>
+										<div class="form-group">
+											<label for="phoneNumber">Phone Number <span class="star">&#9733;</span></label>
+											<input id="phoneNumber"  type="text" name="phoneNumber" pattern="[6789][0-9]{9}" class="form-control" maxlength="10" placeholder="Phone Number.." required>
+										</div>
+										<div class="form-group">
+											<label for="address">Address <span class="star">&#9733;</span></label>
+											<textarea id="address"  type="text" name="address" class="form-control" rows="3" placeholder="Warehouse Address.." required></textarea>
+										</div>
+
+										<div class="form-group">
+											<label for="password">Password <span class="star">&#9733;</span></label>
+											<input id="password"  type="password" name="password" pattern=".{8,}" title="Must be minimum of 10 characters" class="form-control" placeholder="Enter a strong password.." required>
+										
+										</div>
+										<div class="form-group">
+											<label for="confirmpassword">Confirm Password <span class="star">&#9733;</span></label>
+											<input id="confirmpassword"  type="password" name="confirmpassword" class="form-control" placeholder="Re-enter password.." required>
+											<small id="confirmpasswordHelp" class="form-text text-muted"></small>
+										</div>
+										<div class="form-group">
+											<input id="longitude"  type="text" name="longitude" class="form-control" style="display: none;">
+										</div>
+										<div class="form-group">
+											<input id="latitude"  type="text" name="latitude" class="form-control" style="display: none;">
+										</div>
+									
+										<div class="form-group text-center">
+										
+                                             <button class="btn btn-block " style="text-align: center;color:white; padding: 10px; background-color: #ff2121;">Sign Up</button>
+										</div>
+									</form>                                                  
+										<div class="text-center">
+											<h5 class="have">Have an account? <a class="red" href="{{ url_for('warehouse_login') }}">Sign In</a></h5>
+												
+										</div>
+									
+
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><br><br><br>
+
+{% endblock %}
+
+{% block organisation %}
+{% endblock %}
+{% block blogs %}
+{% endblock %}
+{% block scripts %}
+<script>
+	
+	$(document).ready(function(){
+		if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition);
+	  	}
+	});
+	
+	function showPosition(position) {
+		$('#longitude').val(position.coords.longitude);
+		$('#latitude').val(position.coords.latitude);
+	  
+	} 
+	
+</script>
+{% endblock %}

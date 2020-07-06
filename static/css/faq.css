@@ -1,0 +1,141 @@
+
+/*
+#faqs{
+
+}
+*/
+.hidden-area{
+    border:0;
+}
+.all-slider{
+/*    padding: 10px;*/
+    
+    margin-top: 20px;
+/*    margin: 32px;*/
+    width: 100%;
+/*    box-shadow: 0px 4px 7px 8px #f2eeee;*/
+}
+#ask-here{
+    margin: 30px;
+/*    margin: 40px;*/
+/*    width: 100%;*/
+/*    border: 1px solid cyan;*/
+}
+#ask-here form button{
+    margin-top: 10px;
+    width: 40%;
+    padding: 7px;
+    background-color: red;
+    color: white;
+    border: none;
+    font-size: 1.7rem;
+    transition: ease-in-out 0.3s;
+    border: 1px solid red;
+}
+#ask-here form button:hover{
+    background-color: white;
+    color: red;
+}
+#ask-here form textarea{
+    height: 200px;
+    width: 100%;
+    padding: 8px;
+    color: grey;
+    font-size: 1.6rem;
+    background-color: rgb(252, 252, 252);
+}
+#ask-here form textarea:focus{
+    outline: none;
+}
+#support-faq{
+    font-size: 3rem;
+    text-decoration: underline;
+    text-align: center;
+    color: grey;
+}
+.content{
+    display: flex;
+    justify-content: space-between;
+    background-color: red; 
+    color: black;
+}
+.content span{
+    font-size: 1.5rem;
+    padding: 12px;
+}
+
+.single-card{
+    border-radius: 0;
+    /* padding: 2px; */
+    margin: 2px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 1px 7px 15px 5px #f2eeee;
+/*    box-shadow: 0px 4px 7px 8px #f2eeee;*/
+/*     border-bottom: 1px solid grey; */
+}
+/* .single-card:hover{
+    box-shadow: 1px 5px 10px 3px #f2eeee;
+} */
+
+/*animation of plus and minus*/
+.vertical {
+    transition: all 0.5s ease-in-out;
+    transform: rotate(-90deg);
+  }
+  .horizontal {
+    transition: all 0.5s ease-in-out;
+    transform: rotate(-90deg);
+    opacity: 1;
+  }
+
+  
+  .opened  .vertical {
+    transition: all 0.5s ease-in-out;
+    transform: rotate(90deg);
+  }
+  .opened .horizontal {
+    transition: all 0.5s ease-in-out;
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+  .circle-plus {
+      height: 3em;
+      width: 3em;
+      font-size: 1em;
+     padding-top: 7px;
+      /* border: 1px solid chartreuse; */
+  }
+  
+  .circle-plus .circle {
+      position: relative;
+      width: 2.55em;
+      height: 2.5em;
+      border-radius: 100%;
+      /* border: solid .5em #DFDAD7; */
+  }
+  .circle-plus .circle .horizontal {
+      position: absolute;
+      background-color: black;
+      width: 20px;
+      /* sign font */
+      height: 1px;  
+
+      left: 50%;
+      margin-left: -12px;
+      top: 50%;
+      margin-top: -2.5px;
+  }
+  .circle-plus .circle .vertical {
+      position: absolute;
+      background-color: black;
+      /* sign font width */
+      width: 1px;
+      height: 20px;
+      left: 50%;
+      margin-left: -2.5px;
+      top: 50%;
+      margin-top: -11px;
+  }
+  
+  

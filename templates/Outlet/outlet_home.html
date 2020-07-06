@@ -1,0 +1,97 @@
+{% extends 'index.html' %}
+{% block headextra %}
+{% if 'outlet_id' in session %}
+<div class="col-md-2">
+    <div class="profile loc">
+        <div class="dropdown">
+            <a href="#" id="profilebutton"><span class="icon"><i
+                        class="icon-user"></i></span></a>
+            <p style="padding-top: 4%;"><a
+                    href="#">{% if 'user_name' in session %}{{ session['user_name'] }}{% endif %}</a>
+            </p>
+            <div class="dropdown-menu" id="profilecontent"
+                style="margin-top: 20px; margin-left:80px;">
+                <ul></ul>
+                <li class="dropdown-item"><a
+                        href="outlet_profile">My Account</a>
+                </li>
+                <li class="dropdown-item"><a
+                        href="{{ url_for('logout') }}">Logout</a></li>
+            </div>
+		</div>
+		
+    </div>
+</div>
+<div class="col-md-2">
+	<a href="{{url_for('outlet_notification')}}" style="text-decoration: none; color: black;">
+	<p style="padding-top: 4%; margin-left: 60px;">notification</p>
+	<div class="notification">
+		<span class="icon" style="position: relative;"><i class=" icon-bell"></i></span>
+		{% if 'notifcountoutlet' in session %}
+		<span class="badge badge-light" style="position: absolute;">{{session['notifcountoutlet']}}</span>
+		{% endif %} 
+	</div>
+</a>
+</div>
+
+{% endif %}
+{% endblock %}
+{% block countingbar %}
+{% endblock %}
+{% block slider %}
+{% endblock %}
+{% block content %}
+   <!-- nearby warehouses Button -->
+	<div class="container">
+		<div class="row ">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <h2 style="color: black; ;"><B>UTILITIES</B></h2>
+                
+            </div>
+        </div>
+		
+		<div class="row">
+			<div class="col-md-4 ">
+				<div class="blog-entry">
+					<a class="blog-img" style="background-image: url(../static/images/img101.jpg); box-shadow: 0px 11px 40px -13px #0A0819"></a>
+					<div class="text-center">
+						<a href="{{ url_for('nearest_warehouses') }}">
+						<button class="b_center"  > Nearest warehouses </button>
+					</a>
+
+					</div>
+				</div>
+			</div>
+			{% if  session['outlet_type'] != 'individual' %}
+			<div class="col-md-4 ">
+				<div class="blog-entry">
+					<a class="blog-img" style="background-image: url(../static/images/img102.jpg); box-shadow: 0px 11px 40px -13px #0A0819"></a>
+					<div class="text-center">
+						<a href="{{ url_for('staff_crud') }}">
+						<button class="b_center"  > Staff </button>
+					</a>
+
+					</div>
+				</div>
+			</div>
+			{% endif %}
+			<div class="col-md-4 " style="float: right;">
+				<div class="blog-entry">
+					<a  class="blog-img" style="background-image: url(https://www.futurenet.in/images/clients/clients-mobi.jpg); box-shadow: 0px 11px 40px -13px #0A0819"></a>
+					<div class="text-center">
+						<a href="{{ url_for('outlet_clients') }}">
+						<button class="b_center"  > Clients </button>
+					</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block blogs %}
+{% endblock %}
+{% block organisation %}
+{% endblock %}

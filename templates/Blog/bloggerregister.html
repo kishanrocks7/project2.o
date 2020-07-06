@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+{% block countingbar %}
+{% endblock %}
+{% block slider %}
+{% endblock %}
+{% block content %}
+
+
+<!-- register form -->
+	<div id="colorlib-choose">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="choose">
+					<div class="half img-bg" style="background-image: url(../static/images/latest_2.jpg);"></div>
+					<div class="half features-wrap">
+						<div class="features-services animate-box">
+							<div class="row">
+								{% if failuremsg %}
+												<h5 style="text-align: center;color: #ff2121; margin-bottom: 30px;">{{failuremsg}}</h5>
+												{% endif %}
+												{% with msg = get_flashed_messages() %}
+											 {% if msg %}
+											 <h5 style="text-align: center;color: #ff2121; margin-bottom: 30px;">{{ msg[0] }}</h5>
+											 {% endif %}
+											 {% endwith %}
+								<h1 style="text-align: center;color: #ff2121;">Sign Up</h1>
+								<div style="width: 50%; margin: 25px auto;font-family: 'Montserrat', sans-serif;">
+									<form action="{{ url_for('blogger_register') }}" method="post">
+										<div class="form-group">
+											<label for="bloggerName">Name </label>
+											<input id="bloggerName" type="text" name="bloggerName"   class="form-control" placeholder="Name.." required>
+										</div>
+										<div class="form-group">
+											<label for="email">Email </label>
+											<input id="email"  type="email" name="email" class="form-control"  placeholder="E-mail.." required>
+										</div>
+										<div class="form-group">
+											<label for="phoneNumber">Phone Number </label>
+											<input id="phoneNumber"  type="text" name="phoneNumber" pattern="[6789][0-9]{9}" class="form-control" maxlength="10" placeholder="Contact Number.." required>
+                                        </div>
+                                        <div class="form-group"> <!-- Date input -->
+                                            <label class="control-label" for="date">Date of Birth</label>
+                                            <input class="form-control" id="date" name="dob" placeholder="MM/DD/YYY" type="date" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="gender">Gender</label>
+                                            <select class="form-control" name="gender" id="gender">
+                                              <option value="male">Male</option>
+                                              <option value="female">Female</option>
+                                              <option value="other">Other</option>
+                                            </select>
+										  </div>
+										<div class="form-group">
+                                            <label for="profession">Profession</label>
+                                            <select class="form-control" name="profession" id="profession">
+                                              <option value="student">Student</option>
+                                              <option value="professional">Professional</option>
+                                              <option value="other">Other</option>
+                                            </select>
+                                        </div>
+										<div class="form-group">
+											<label for="address">Address </label>
+											<textarea id="address"  type="text" name="address" class="form-control" rows="3" placeholder="Address.." required></textarea>
+										</div>
+
+										<div class="form-group">
+											<label for="password">Password </label>
+											<input id="password"  type="password" name="password" pattern=".{8,}" title="Must be minimum of 10 characters" class="form-control" placeholder="Enter a strong password.." required>
+										
+										</div>
+										<div class="form-group">
+											<label for="confirmpassword">Confirm Password </label>
+											<input id="confirmpassword"  type="password" name="confirmpassword" class="form-control" placeholder="Re-enter password.." required>
+											<small id="confirmpasswordHelp" class="form-text text-muted"></small>
+										</div>
+										<div class="form-group text-center">
+										
+                                             <button class="btn btn-block " style="text-align: center;color:white; padding: 10px; background-color: #ff2121;">Sign Up</button>
+                                                                                            
+										<div class="text-center">
+											<h5 class="have">Have an account? <a class="red" href="{{ url_for('blogger_login') }}">Sign In</a></h5>
+												
+										</div>
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><br><br><br>
+
+{% block organisation %}
+{% endblock %}
+{% block blogs %}
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,315 @@
+{%extends 'index.html'%}
+{% block countingbar %}
+{% endblock %}
+{% block slider %}
+{% endblock %}
+{% block includes %}
+
+<link href="https://fonts.googleapis.com/css?family=Montserrant:300,400,500,600,700" rel="stylesheet">
+	<!-- Bootstrap css       -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="../static/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="../static/css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="../static/css/magnific-popup.css">
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="../static/css/flexslider.css">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="../static/fonts/flaticon/font/flaticon.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="../static/css/style.css">
+	<link rel="stylesheet" href="../static/css/curd.css">
+	<!-- Modernizr JS -->
+	<script src="../static/js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="../static/js/respond.min.js"></script>
+	<![endif]-->
+	<script src="https://kit.fontawesome.com/b2208ecd95.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../static/css/faq.css">
+
+{% endblock %}
+{% block menuextra %}
+<li><a href="#" data-toggle="modal" data-target="#addquestion" style="color: #ff2121;"><b>ADD QUESTION</b></a></p></li>
+{% endblock %}
+{% block content %}
+
+<!-- Faqs start from here.... -->
+<br><br><br>
+<div>
+
+	<p id="support-faq" style="color: black;">
+
+		<b>FAQ</b>
+	</p>
+
+</div>
+<br>
+
+
+<section id="faqs">
+	{% with msg = get_flashed_messages() %}
+	{% if msg %}
+	<h5 style="margin-bottom: 30px; margin-top: 30px; text-align: center; color: #ff2121;">{{msg[0]}}</h5>
+	{% endif %}
+	{% endwith %}
+
+	
+	<div class="container">
+		<div >
+			{% if quesdata %}
+			{% for data in quesdata  %}
+			<div>
+				<div class="accordion all-slider" id="accordionExample{{loop.index}}" >
+					<div class="card single-card">
+						<div class="card-header p-0" id="headingOne{{loop.index}}">
+							<div class="mb-0 content" data-toggle="collapse" data-target="#collapseOne{{loop.index}}"
+								aria-expanded="true" aria-controls="collapseOne{{loop.index}}">
+								<span style="color: white;">{{'%.30s'|format(data[4])}}</span>
+								<div class="circle-plus closed first-faq">
+									<div class="circle">
+										<div class="horizontal"></div>
+										<div class="vertical"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="collapseOne{{loop.index}}" class="collapse hidden-area" aria-labelledby="headingOne"
+							data-parent="#accordionExample{{loop.index}}">
+							<div class="card-body">
+								<div class="div1">
+									<div class="container-fluid px-0 py-5 mx-auto">
+										<div class="row justify-content-center mx-0 mx-md-auto">
+											<div class="col-lg-10 col-md-11 px-1 px-sm-2">
+												<div class="card border-0 px-3" style="padding:20px; >
+													   
+														<div class=" review p-5">
+													<div class="row d-flex">
+														<div class="profile-pic inline-block"><img
+																src="https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
+																width="60px" height="60px"></div>
+														<div class="inline-block">
+															<h4><b>{{data[3]}}</b></h4>
+
+														</div>
+													</div>
+													<div class="row pb-3 inline-block">
+														Posted on ({{data[2]}})
+														<p><i>{{data[4] | safe }}</i></p>
+													</div>
+													{% if data[9] != none %}
+													<div class="row pb-3 inline-block">
+														Answered  By <span style="color: #ff2121;">{{data[7]}}</span> on  ({{data[8]}})
+														<p><i>{{data[9] | safe }}</i></p>
+													</div>
+													{% endif %}
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							{% if data[9] == none %}
+							<a href="#" data-toggle="modal" data-target="#postanswer{{loop.index}}"><button class="mail_button">give answer</button></a></p>
+							{% endif %}
+						</div>
+
+					</div>
+				</div>
+				
+			</div>
+			<!--modal class for answer-->
+<div class="modal fade" id="postanswer{{loop.index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+	<div class="modal-header text-center">
+	  <h4 class="modal-title w-100 font-weight-bold">ADD YOUR ANSWER</h4>
+	  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+	<div class="modal-body mx-3">
+	  <form action="{{url_for('post_answer')}}" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="quesid" value="{{data[0]}}">
+		<div class="form-group">
+		  <label for="content">ANSWER</label>
+		  <textarea id="content" type="text" name="answer" class="form-control" rows="15"
+			placeholder="Answer.." required></textarea>
+		</div>
+	</div>
+	<div class="form-group text-center">
+
+	  <button class="btn " style="text-align: center; width: 40%; color:white; padding: 10px; background-color: #ff2121;">SUBMIT</button>
+	  </form>
+	</div>
+  </div>
+</div>
+</div>
+<!-- end modal-->
+
+			{% endfor %}
+			
+			{% endif %}
+		</div>
+	</div>
+	
+</section>
+
+<!------------modal for questions-->
+<div class="modal fade" id="addquestion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+	<div class="modal-header text-center">
+	  <h4 class="modal-title w-100 font-weight-bold">ADD QUESTION</h4>
+	  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+	<div class="modal-body mx-3">
+	  <form method="post" action="{{url_for('post_question')}}">
+		<div class="form-group">
+		  <label for="title">QUESTION</label>
+		  <input name="question" class=" form-control">
+		</div>
+	</div>
+	<div class="form-group text-center">
+
+	  <button class="btn " style="text-align: center; width: 40%; color:white; padding: 10px; background-color: #ff2121;">SUBMIT</button>
+	  </form>
+	</div>
+  </div>
+</div>
+</div>
+
+<!-- ##################Style#####and###########links##############-->
+<style>
+	body {
+overflow-x: hidden
+}
+.inline-block {
+display: inline-block;
+}
+
+
+.mail_button
+{
+height: 54px;
+background: red;
+border: none;
+outline: none;
+cursor: pointer;
+color: #FFFFFF;
+font-size: 11px;
+font-weight: 500;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+text-align: center;
+margin-bottom: 4%;
+margin-left: 39%;
+}
+
+
+
+.sm-text {
+font-size: 10px;
+letter-spacing: 1px
+}
+
+.sm-text-1 {
+font-size: 14px
+}
+
+.green-tab {
+background-color: #00C853;
+color: #fff;
+border-radius: 5px;
+padding: 5px 3px 5px 3px
+}
+
+.btn-red {
+background-color: #E64A19;
+color: #fff;
+border-radius: 20px;
+border: none;
+outline: none
+}
+
+.btn-red:hover {
+background-color: #BF360C
+}
+
+.btn-red:focus {
+-moz-box-shadow: none !important;
+-webkit-box-shadow: none !important;
+box-shadow: none !important;
+outline-width: 0
+}
+
+.round-icon {
+font-size: 40px;
+padding-bottom: 10px
+}
+
+.fa-circle {
+font-size: 10px;
+color: #EEEEEF
+}
+
+.green-dot {
+color: #4CAF50
+}
+
+.red-dot {
+color: #E64A19
+}
+
+.yellow-dot {
+color: #FFD54F
+}
+
+.grey-text {
+color: #BDBDBD
+}
+
+.green-text {
+color: #4CAF50
+}
+
+.block {
+border-right: 1px solid #F5EEEE;
+border-top: 1px solid #F5EEEE;
+border-bottom: 1px solid #F5EEEE
+}
+
+.profile-pic img {
+border-radius: 50%
+}
+
+.rating-dot {
+letter-spacing: 5px
+}
+
+.via {
+border-radius: 20px;
+height: 28px
+}
+</style>
+<!-- Faq js -->
+<script src="../static/js/faq.js"></script>
+{% endblock %}
+{% block organisation %}
+<div style="margin-bottom: 40px;"></div>
+{% endblock %}

@@ -1,0 +1,254 @@
+{% extends 'index.html' %}
+{% block headextra %}
+{% if 'blogger_id' in session %}
+<div class="col-md-2">
+    <div class="profile loc">
+        <div class="dropdown">
+            <a href="#" id="profilebutton"><span class="icon"><i
+                        class="icon-user"></i></span></a>
+            <p style="padding-top: 4%;"><a
+                    href="#">{% if 'blogger_name' in session %}{{ session['blogger_name'] }}{% endif %}</a>
+            </p>
+            <div class="dropdown-menu" id="profilecontent"
+                style="margin-top: 20px; margin-left:80px;">
+                <ul></ul>
+                <li class="dropdown-item"><a
+                        href="{{ url_for('blogger_profile') }}">My Account</a>
+                </li>
+                <li class="dropdown-item"><a
+                        href="{{ url_for('logout') }}">Logout</a></li>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-2">
+    <p style="padding-top: 4%; margin-left: 60px;"><a href="#" data-toggle="modal"
+        data-target="#addnewblog" style="color: black;">Add Blog</a></p>
+    <div class="notification">
+        <a href="#" data-toggle="modal"  data-target="#addnewblog"><span class="icon"><i class="icon-file-add"></i></span></a>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}
+{% block countingbar %}
+{% endblock %}
+{% block menuextra %}
+{% if 'blogger_id' is not in session %}
+<li style="float: right;"><a href="{{ url_for('blogger_register') }}">Register as Blogger</a></li>
+<li style="float: right;"><a href="{{ url_for('blogger_login') }}">Login as Blogger</a></li>
+{% endif %}
+{% endblock %}
+{% block slider %}
+{% endblock %}
+{% block content %}
+<!-- Blog Post-->
+<div class="container" style="margin-bottom: 60px;">
+  {% with msg = get_flashed_messages() %}
+			        {% if msg %}
+						<h5 style="text-align: center;color: #ff2121; margin-bottom: 30px;">{{ msg[0] }}</h5>
+					{% endif %}
+				{% endwith %}
+  {% if bdata %}
+    {% for data in bdata %}
+    <div class="row">
+        <div class="col-lg-8">
+            <h1 style="font-family: monsterrat;">{{data[3]}}</h1>
+            <!-- Author -->
+            <p class="lead">
+            by
+            <a href="#">{{data[5]}}</a>
+            </p>
+            <!-- Date/Time -->
+            <p>Posted on {{data[6]}}</p>
+            <hr>
+            <!-- Preview Image -->
+            <img class="img-fluid rounded" src="../static/photos/{{data[2]}}" alt="" style="max-width: 900px; max-height: 400px;" >
+            <hr>
+            <h3></h3>
+            <hr>
+            <p>{{data[4] |safe}}
+            </p>
+       
+
+            <div style="width:100%;">
+              <a href="{{ url_for('blogs') }}" style="color:white; text-decoration: none;"><button type="submit" class="b_center" style="height:54px;width:230px" style="margin-top: 30px;">BROWSE OTHER BLOGS</button></a>
+              {% if session['blogger_id'] == data[1] %}
+              <a href="#" data-toggle="modal" data-target="#editblog" style="color:white; text-decoration: none;"><button type="submit" class="b_center" style="height:54px;width:230px" style="margin-top: 30px;"  >EDIT BLOG</button></a>
+              <a href="{{ url_for('delete_blog',blogid=data[0]) }}" style="color:white; text-decoration: none;"><button type="submit" class="b_center" style="height:54px;width:230px" style="margin-top: 30px;" >REMOVE BLOG</button></a>
+              {% endif %}
+          </div>
+        </div>
+
+    </div>
+    <!-- comment division-->
+    {% endfor %}
+  {% endif %}
+
+
+    
+    
+    
+        <div class="panel panel-default" >
+          <div class="panel-heading" style="background: #ff2121">
+              <a data-toggle="collapse" href="#collapse1"  style="color: white; text-decoration: none;">Add Comments</a>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="card col-lg-8">
+              <h5 class="card-header">Leave a Comment:</h5>
+              <div class="card-body">
+                {% if bdata %}
+                {% for data in bdata %}
+                <form action="{{url_for('add_new_comment',blogid=data[0])}}" method="post">
+                  <div class="form-group">
+                    <textarea class="form-control" name="comment" rows="4" style="min-width: 100%"></textarea>
+                  </div>
+                  <button type="submit" class="btn" style="color: white; background: #ff2121; padding: 13px 40px; border-radius: 0px; ">Submit</button>
+                </form>
+                {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+          
+        </div>
+          </div>
+        </div>
+        {% if cdata %}
+        {% for data in cdata %}
+        <div class="div1">
+          <br>
+          <img class="d-flex mr-3 immg" src="http://placehold.it/50x50" style="border-radius: 50%;">
+          <div class="div2">
+            
+            <p><b> {{data[3]}} </b> </p>
+            <p >{{ data[4] }}</p>
+            {% if session['blogger_id'] == data[2] %}
+            <a href="{{url_for('delete_comment',blogid = data[0] ,commentid=data[1])}}">Delete</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+      
+    </div>
+    
+    
+  
+
+</div>
+
+
+<!-- modal form (pop up) for add blog -->
+
+
+<div class="modal fade" id="addnewblog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add New Blog</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form action="{{url_for('add_new_blog')}}" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="title">Blog Title</label>
+            <textarea id="title" type="text" name="title" class="form-control" rows="3"
+              placeholder="Blog Title.." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="content">Blog Content</label>
+            <textarea id="content" type="text" name="content" class="form-control" rows="15"
+              placeholder="Blog content.." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="blogimage">Select Image</label>
+            <input id="blogimg" type="file" name="blogimg" required>
+          </div>
+      </div>
+      <div class="form-group text-center">
+
+        <button class="btn " style="text-align: center; width: 40%; color:white; padding: 10px; background-color: #ff2121;">Add new Blog</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- modal form (pop up) for edit blog -->
+
+
+<div class="modal fade" id="editblog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Edit Blog</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        {% if bdata %}
+        {% for data in bdata %}
+        <form action="{{url_for('edit_blog',blogid=data[0])}}" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="title">Blog Title</label>
+            <textarea id="title" type="text" name="title" class="form-control" rows="3"
+              placeholder="Blog Title.." required>{{data[3]}}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="content">Blog Content</label>
+            <textarea id="content" type="text" name="content" class="form-control" rows="15"
+              placeholder="Blog content.." required>{{data[4]}}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="blogimage">Select Image</label>
+            <input id="blogimg"  type="file" name="blogimg" >
+          </div>
+      </div>
+      <div class="form-group text-center">
+
+        <button class="btn " style="text-align: center; width: 40%; color:white; padding: 10px; background-color: #ff2121;">Save Edited Blog</button>
+        </form>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+{% block blogs %}
+{% endblock %}
+{% block organisation %}
+{% endblock %}
+{% block scripts %}
+<script>
+	$(document).ready(function (e) {
+			$("#profilebutton").click(function (e) {
+				$("#profilecontent").toggle();
+			});
+	});
+    
+        $('#addnewblog').on('shown.bs.modal', function() {
+            //To relate the z-index make sure backdrop and modal are siblings
+            $(this).before($('.modal-backdrop'));
+            //Now set z-index of modal greater than backdrop
+            $(this).css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
+        });
+        $('#editblog').on('shown.bs.modal', function() {
+            //To relate the z-index make sure backdrop and modal are siblings
+            $(this).before($('.modal-backdrop'));
+            //Now set z-index of modal greater than backdrop
+            $(this).css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
+        });
+</script>
+{% endblock %}

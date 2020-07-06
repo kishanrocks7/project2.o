@@ -1,0 +1,121 @@
+{% extends 'Outlet/outlet_home.html' %}
+{% block includes %}
+
+<link href="https://fonts.googleapis.com/css?family=Montserrant:300,400,500,600,700" rel="stylesheet">
+	<!-- Bootstrap css       -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="../static/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="../static/css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="../static/css/magnific-popup.css">
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="../static/css/flexslider.css">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="../static/fonts/flaticon/font/flaticon.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="../static/css/style.css">
+	<link rel="stylesheet" href="../static/css/curd.css">
+	<!-- Modernizr JS -->
+	<script src="../static/js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="../static/js/respond.min.js"></script>
+	<![endif]-->
+	<script src="https://kit.fontawesome.com/b2208ecd95.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+{% endblock %}
+
+
+{% block content %}
+
+{% with msg = get_flashed_messages() %}
+{% if msg %}
+{% for wmsg in msg %}
+<h5 class="text-center" style="color: #ff2121;">{{wmsg}}</h5>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+{% if notifdata %}
+<div class="container text-center justify-content-center" style="background: rgba(220, 200, 220, 0.1);padding:20px 0 20px; box-shadow: 0 0 15px grey; margin-top: 40px;">
+{% for data in notifdata %}
+{% if data[4] == 'accept' %}
+<button class="accept btn text-center" style="background: limegreen;" data-toggle="modal" data-target="#notif{{loop.index}}">Your last order request for {{data[5]}} is accepted(click to know more)</button><br>
+        <!-- Modal for accept -->
+    <div class="modal fade" id="notif{{loop.index}}" tabindex="-1" role="dialog"
+        aria-labelledby="ModalLabel{{loop.index}}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center justify-content-center"
+                        id="ModalLabel{{loop.index}}">Response</h4>
+                    </button>
+                </div>
+                <form method="POST" action="{{url_for('deleteacceptedorder')}}">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="hidden" value="{{data[0]}}" name="responseid">
+                            <h5>Your order has been accepted for <span style="color: #ff2121;">{{data[5]}}</span></h5>
+                            <h5>please note it,and click Ok.</h5>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn" style="padding: 8px 17px; background:limegreen; color: white;">Ok</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% else %}
+<button class="reject btn  text-center" style="background: #ff2121;" data-toggle="modal" data-target="#notif{{loop.index}}">Your last order request for {{data[5]}} is rejected(click to know more)</button><br>
+   <!-- Modal for accept -->
+   <div class="modal fade" id="notif{{loop.index}}" tabindex="-1" role="dialog"
+   aria-labelledby="ModalLabel{{loop.index}}" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h4 class="modal-title text-center justify-content-center"
+                   id="ModalLabel{{loop.index}}">Response</h4>
+               </button>
+           </div>
+           <form method="POST" action="{{url_for('deleterejectedorder')}}">
+               <div class="modal-body">
+                   <div class="form-group">
+                       <input type="hidden" value="{{data[0]}}" name="responseid">
+                       <h5>Your order has been reject for <span style="color: #ff2121;">{{data[5]}}</span> due to::</h5>
+                       <h5>{{data[4]}}</h5>
+                   </div>
+               </div>
+               <div class="modal-footer">
+                   <button type="submit" class="btn" style="padding: 8px 17px; background:limegreen; color: white;">Ok</button>
+               </div>
+           </form>
+       </div>
+   </div>
+</div>
+{% endif %}
+{% endfor %}
+</div>
+<style>
+    .accept , .reject
+    {
+        width: 600px;
+         height: 70px;
+         color: white;
+         margin-top:10px; 
+         font-size:16px;
+    }
+</style>
+{% endif %}
+<div style="margin-bottom: 40px;"></div>
+
+{%  endblock %}

@@ -1,0 +1,376 @@
+{% extends 'Outlet/outlet_home.html' %}
+
+{% block includes %}
+
+<link href="https://fonts.googleapis.com/css?family=Montserrant:300,400,500,600,700" rel="stylesheet">
+	<!-- Bootstrap css       -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="../static/css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="../static/css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="../static/css/magnific-popup.css">
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../static/css/owl.theme.default.min.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="../static/css/flexslider.css">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="../static/fonts/flaticon/font/flaticon.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="../static/css/style.css">
+	<link rel="stylesheet" href="../static/css/curd.css">
+	<!-- Modernizr JS -->
+	<script src="../static/js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="../static/js/respond.min.js"></script>
+	<![endif]-->
+	<script src="https://kit.fontawesome.com/b2208ecd95.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+{% endblock %}
+
+
+{% block content %}
+<!--   CRUD start from here..     -->
+<section id="curd-border-area">
+  <div id="main-curd-area">
+    <div id="data-curd">
+      <div class="main-content">
+        {% with msg = get_flashed_messages() %}
+        {% if msg %}
+        <h5 style="margin-bottom: 30px; margin-top: 30px; text-align: center; color: #ff2121;">{{msg[0]}}</h5>
+        {% endif %}
+        {% endwith %}
+        {%  if pmsg %}
+        <h5 style="margin-bottom: 30px; margin-top: 30px; text-align: center; color: #ff2121;">{{pmsg}}</h5>
+        {% endif %}
+        <div class=" form-inline">
+          <button id="add-button" class="add_client_btn" type="button" data-toggle="modal"
+            data-target="#addclientform">
+            Add client
+          </button>
+          <!-- Search form -->
+          <form action="{{url_for('search_client')}}" method="post" class="form-inline d-flex justify-content-center md-form form-sm active-pink-2 mt-2"style="margin-left: 500px;" >
+            <input class="form-control form-control-sm mr-3 w-25" type="text" placeholder="Search client" aria-label="Search" pattern="([a-zA-Z]).{2,}" Title="Atleast Two characters are required" name="searchinp" >
+            <button style="background-color: #ff2121; color: white; padding: 5px 10px;"><i class="fas fa-search"></i></button>
+          </form>
+        </div>
+      </div>
+    
+
+<!-- start  client-->
+      <div class="main-content">
+        <div class="container-fluid content-header">
+          <div class="row">
+            <div class="col item-area" style="display: none; width: 0px;">
+              <div class="item-name">
+                Id
+                <span>
+                  <i class="fas fa-caret-up"></i>
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+            <div class="col item-area" style="width: 15%">
+              <div class="item-name">
+                Name
+                <span>
+                  <i class="fas fa-caret-up"></i>
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+            <div class=" item-area" style="width: 8%">
+              <div class="item-name">
+                Age
+                <span>
+                  <i class="fas fa-caret-up"></i>
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+            <div class="item-area" style="width: 10%">
+              <div class="item-name">
+                Gender
+                <span>
+                  <i class="fas fa-caret-up"></i>
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+            <div class="col item-area" style="width: 12%">
+              <div class="item-name">
+                Last visited
+                <span>
+                  <i class="fas fa-caret-up"></i>
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+            <div class="col item-area" style="width: 15%">
+              <div class="item-name">
+                email
+                <span>
+                  <i class="fas fa-caret-up"></i>
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+            <div class="col item-area" style="width: 10%">
+                <div class="item-name">
+                  Contact Number
+                  <span>
+                    <i class="fas fa-caret-up"></i>
+                    <i class="fas fa-caret-down"></i>
+                  </span>
+                </div>
+              </div>
+
+            <div class="col text-center item-area">
+              <div class="item-name">
+                Actions
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- client data on Page Load-->
+     {% if pdata %}
+     {% for clientdata in pdata %}
+      <div class="container-fluid all-data-item">
+        <div class="row">
+            <form class="clientinfoform form-inline" method="post" action="{{url_for('delete_client_details')}}">
+            <input value="{{clientdata[0]}}" type="text" name="id" class="clientid"  style="border: none; width: 0px; display: none;">
+          <div class="l item-area items-data" style="width: 15%">
+            <input value="{{clientdata[1]}}" type="text" class="clientname"  pattern="([A-Za-z]).{3,}" title="must be of at least 3 character"  readonly style="border: none;">
+          </div>
+          <div class="item-area items-data" style="width: 6%;">
+            <input value="{{clientdata[2]}}" type="email" class="clientemail"  readonly style="border: none;">
+          </div>
+          <div class=" item-area items-data" style="width:8%">
+            <input value="{{clientdata[3]}}" type="text" pattern="[6789][0-9]{9}" class="clientnumber"  readonly style="border: none;">
+          </div>
+          <div class=" item-area items-data" style="width: 8%">
+            <input value="{{clientdata[4]}}" type="text"  class="clientnumber"   readonly style="border: none;">
+          </div>
+          <div class=" item-area items-data" style="width: 25%">
+            <input value="{{clientdata[5]}}" type="text" class="commoditytype"  readonly style="border: none; width: 120%;">
+          </div>
+          <div class="col item-area items-data" style="width: 10%">
+            <input value="{{clientdata[6]}}" type="number" class="commodityunits"  readonly style="border: none;">
+          </div>
+          <div class="col item-area items-data">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col actions">
+                  <div>
+                    <button class="editclientinfo" type="button"
+                      style="background-color: #ff2121; border: none; color: white; " data-toggle="modal"
+                      data-target="#editclientform{{loop.index}}">
+                      <i class="far fa-edit"></i>
+                    </button>
+                  </div>
+                </div>
+
+
+                <div class="col actions">
+                  <div>
+                    <button class="deleteclientinfo" style="background-color: #ff2121; border: none; color: white; ">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- modal form (pop up) for edit client details -->
+
+<div class="modal fade" id="editclientform{{loop.index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header text-center">
+      <h4 class="modal-title w-100 font-weight-bold">Edit client details</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body mx-3">
+      <form action="{{url_for('change_client_details')}}" method="post">
+        <input value="{{clientdata[0]}}" type="text" class="clientid" name="id" style="border: none; width: 0px; display: none;">
+        <div class="form-group">
+          <label for="Name">Name</label>
+          <input id="Name" value="{{clientdata[1]}}"  type="text" name="name" class="form-control" placeholder="Customer Name.." required>
+        </div>
+        <div class="form-group">
+          <label for="Age">Age</label>
+          <select class="form-control" name="age" id="Age">
+            <option value="{{clientdata[2]}}">{{clientdata[2]}}</option>
+            {% for i in range(1,100) %}
+            <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select class="form-control" name="gender" id="gender">
+            <option value="{{clientdata[3]}}" >{{clientdata[3]}}</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group"> <!-- Date input -->
+          <label class="control-label" for="date">Last visited</label>
+          <input class="form-control" value="{{clientdata[4]}}" id="date" name="lastvisited" placeholder="MM/DD/YYY" type="date" required/>
+      </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" value="{{clientdata[5]}}" name="email" class="form-control" placeholder="E-mail.." required>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Contact Number</label>
+          <input id="phoneNumber" value="{{clientdata[6]}}" type="text" name="phoneNumber" pattern="[6789][0-9]{9}" class="form-control"
+            maxlength="10" placeholder="Contact Number.." required>
+        </div>
+        
+        <div class="form-group">
+          <label for="commodityUnits">Commodity Type Purchased</label>
+          <input value="{{clientdata[7]}}" id="commoditytype" type="text" name="commoditytype" class="form-control"
+            placeholder="Commodity Type Purchased.." required>
+        </div>
+        <div class="form-group">
+          <label for="visit">Purpose of visiting Outlet</label>
+          <textarea id="visit" type="text" name="purposevisit" class="form-control" rows="3"
+            placeholder="Purpose of visiting.." required>{{clientdata[8]}}</textarea>
+        </div>
+    </div>
+    <div class="form-group text-center">
+
+      <button class="btn " style="text-align: center;color:white; padding: 10px; background-color: #ff2121;">Save Information</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+<!-- end of edit Pop-up-->
+
+
+     {% endfor %}
+     {% endif %}
+
+
+      <div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination ml-4 my-pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+
+
+    </div>
+    <div>
+
+    </div>
+  </div>
+</section>
+<!-- modal form (pop up) for add client -->
+
+<div class="modal fade" id="addclientform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add New Client</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form action="{{ url_for('add_client') }}" method="post">
+          <div class="form-group">
+            <label for="Name">Name</label>
+            <input id="Name" type="text" name="name" class="form-control" placeholder="Customer Name.." required>
+          </div>
+          <div class="form-group">
+            <label for="Age">Age</label>
+            <select class="form-control" name="age" id="Age">
+              <option value=select>select</option>
+              {% for i in range(1,100) %}
+              <option value="{{i}}">{{i}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="form-control" name="gender" id="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group"> <!-- Date input -->
+            <label class="control-label" for="date">Last visited</label>
+            <input class="form-control" id="date" name="lastvisited" placeholder="MM/DD/YYY" type="date" required/>
+        </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" class="form-control" placeholder="E-mail.." required>
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Contact Number</label>
+            <input id="phoneNumber" type="text" name="phoneNumber" pattern="[6789][0-9]{9}" class="form-control"
+              maxlength="10" placeholder="Contact Number.." required>
+          </div>
+          
+          <div class="form-group">
+            <label for="commodityUnits">Commodity Type Purchased</label>
+            <input id="commoditytype" type="text" name="commoditytype" class="form-control"
+              placeholder="Commodity Type Purchased.." required>
+          </div>
+          <div class="form-group">
+            <label for="visit">Purpose of visiting Outlet</label>
+            <textarea id="visit" type="text" name="purposevisit" class="form-control" rows="3"
+              placeholder="Purpose of visiting.." required></textarea>
+          </div>
+      </div>
+      <div class="form-group text-center">
+
+        <button class="btn " style="text-align: center;color:white; padding: 10px; background-color: #ff2121;">Add new
+          client</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

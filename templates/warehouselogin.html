@@ -1,0 +1,65 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<!-- register form -->
+	<div id="colorlib-choose">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="choose">
+					<div class="half img-bg" style="background-image: url(../static/images/latest_2.jpg);"></div>
+					<div class="half features-wrap">
+						<div class="features-services animate-box">
+							<div class="row">
+								{% with msg = get_flashed_messages() %}
+											 {% if msg %}
+											 <h5 style="text-align: center;color: #ff2121; margin-bottom: 30px;">{{ msg[0] }}</h5>
+											 {% endif %}
+											 {% endwith %}
+
+								<h1 style="text-align: center;color: #ff2121;">Login</h1>
+								
+								<div style="width: 50%; margin: 25px auto;font-family: 'Montserrat', sans-serif;">
+					
+								<form action="{{url_for('warehouse_dashboard')}}" method="POST">
+										<div class="form-group">
+											<label for="">Enter unique ID </label>
+											<input type="text" name="userid" class="form-control" placeholder="Enter unique ID.." required >
+										</div>
+
+										<div class="form-group">
+											<label for="">Email or phone number</label>
+											<input type="text" name="em_or_num" class="form-control" placeholder="Enter email or number.. " required >
+										</div>
+
+										<div class="form-group">
+											<label for="">Enter manager name</label>
+											<input type="text" name="manager_name" class="form-control" placeholder="Enter manager name.." required autocomplete="off">
+										</div>
+										<div class="form-group">
+											<label for="">Password</label>
+											<input type="password" name="password" class="form-control" placeholder="Enter password.." required autocomplete="off">
+										</div>
+
+										<div class="form-group text-center">
+											<button class="button button-login btn-block register_button"  >Login</button>
+										</div>
+										<div class="text-center">
+											<a href="{{ url_for('warehouse_register') }}">
+											<h5 class="have">New User? <a class="green" href="{{ url_for('warehouse_register') }}" >Sign Up</a></h5>
+											</a>
+										</div>
+										<div class="text-center top">
+											<h6><a class="red"  style="cursor:pointer" href="{{url_for('forgot_password')}}">Forgot Password?</a></h6>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><br><br><br>
+
+{% endblock %}
+

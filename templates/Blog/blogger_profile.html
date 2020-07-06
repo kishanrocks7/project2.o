@@ -1,0 +1,260 @@
+{% extends 'index.html' %}
+{% block headextra %}
+{% if 'blogger_id' in session %}
+<div class="col-md-2">
+    <div class="profile loc">
+        <div class="dropdown">
+            <a href="#" id="profilebutton"><span class="icon"><i
+                        class="icon-user"></i></span></a>
+            <p style="padding-top: 4%;"><a
+                    href="#">{% if 'blogger_name' in session %}{{ session['blogger_name'] }}{% endif %}</a>
+            </p>
+            <div class="dropdown-menu" id="profilecontent"
+                style="margin-top: 20px; margin-left:80px;">
+                <ul></ul>
+                <li class="dropdown-item"><a
+                        href="{{ url_for('blogger_profile') }}">My Account</a>
+                </li>
+                <li class="dropdown-item"><a
+                        href="{{ url_for('logout') }}">Logout</a></li>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-2">
+    <p style="padding-top: 4%; margin-left: 60px;"><a href="#" data-toggle="modal"
+        data-target="#addnewblog" style="color: black;">Add Blog</a></p>
+    <div class="notification">
+        <a href="#" data-toggle="modal"  data-target="#addnewblog"><span class="icon"><i class="icon-file-add"></i></span></a>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}
+{% block countingbar %}
+{% endblock %}
+{% block menuextra %}
+{% if 'blogger_id' is not in session %}
+<li style="float: right;"><a href="{{ url_for('blogger_register') }}">Register as Blogger</a></li>
+<li style="float: right;"><a href="{{ url_for('blogger_login') }}">Login as Blogger</a></li>
+{% endif %}
+{% endblock %}
+{% block slider %}
+{% endblock %}
+{% block content %}
+
+<!--profile-->
+
+<div id="colorlib-about" style="background-color: rgba(220,220,220,0.3); ">
+	<div class="container">
+		{% if profmsg %}
+		<h5 style="text-align: center;color: #ff2121; margin-bottom: 30px;">{{profmsg}}</h5>
+		{% endif %}
+		<h1 style="text-align: center;color: #ff2121; margin-bottom: 50px;">Profile</h1>
+		{% if pdata %}
+		{% for profdata in pdata%}
+		<div class="row">
+			<form action="{{url_for('blogger_profile')}}" method="post" class="bloggerprofileform" enctype="multipart/form-data" id="profform"></form>
+			<div class="col-md-6 col-md-push-6 animate-box ">
+				{% if profdata[9] %}
+				<img class="img-responsive about-img" src="../static/photos/{{profdata[9]}}" alt=""
+					style="max-width: 829px; max-height: 669px; margin-top: 50px;">
+					{% endif %}
+				<input form="profform" type="file" class="bloggerimgupload" name="bloggerimg" style="display: none;" readonly>
+			</div>
+			
+			<div class="col-md-6 col-md-pull-6 ">
+				<div class="fancy-collapse-panel">
+					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingOne">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+										aria-expanded="true" aria-controls="collapseOne">Name
+									</a>
+								</h4>
+							</div>
+							<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+								aria-labelledby="headingOne">
+								<div class="panel-body">
+									<input form="profform" value="{{profdata[1]}}" class="bloggername form-control" type="text"
+										name="name" style="border: none; background-color: white;box-shadow: none; "
+										readonly required >
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingTwo">
+								<h4 class="panel-title">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+										href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Phone No.
+									</a>
+								</h4>
+							</div>
+							<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+								aria-labelledby="headingTwo">
+								<div class="panel-body">
+									<input form="profform" value="{{profdata[3]}}" class="bloggerphone form-control" type="text"
+										name="phone" pattern="[6789][0-9]{9}" style="border: none; background-color: white;box-shadow: none;"
+										readonly required>
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingThree">
+								<h4 class="panel-title">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+										href="#collapseThree" aria-expanded="false"
+										aria-controls="collapseThree">Date of Birth
+									</a>
+								</h4>
+							</div>
+							<div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+								aria-labelledby="headingThree">
+								<div class="panel-body">
+									<input form="profform" value="{{profdata[4]}}" class="bloggerdob form-control" type="date"
+										name="dob" style="border: none;background-color: white;box-shadow: none;"
+										readonly required>
+								</div>
+							</div>
+						</div>
+                        <div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingFour">
+								<h4 class="panel-title">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+										href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Profession
+									</a>
+								</h4>
+							</div>
+							<div id="collapseFour" class="panel-collapse collapse" role="tabpanel"
+								aria-labelledby="headingFive">
+								<div class="panel-body">
+									<input form="profform" value="{{profdata[7]}}" class="bloggerprofession form-control" type="text"
+										name="profession"  maxlength="10"
+										style="border: none; background-color: white;box-shadow: none;" required
+										readonly>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="headingFive">
+								<h4 class="panel-title">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion"
+										href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Address
+									</a>
+								</h4>
+							</div>
+							<div id="collapseFive" class="panel-collapse collapse" role="tabpanel"
+								aria-labelledby="headingFive">
+								<div class="panel-body">
+									<textarea form="profform"  type="text" name="address" class="bloggeraddress form-control" rows="3"
+										style="border: none; background-color: white;box-shadow: none;" required
+										readonly>{{profdata[6]}}</textarea>
+								</div>
+							</div>
+						</div>
+
+
+						
+
+						
+
+					
+
+						<!--buttons-->
+						<div class="form-group text-center">
+							<button form="profform" class="savebloggerprofile btn  " style="text-align: center;color:white; padding: 10px; background-color: #ff2121; display: none; margin-top: 40px; width: 250px;">Save
+								Edited Profile
+							</button><br>
+							<button class="editbloggerprofile btn  " type="button"
+								style="text-align: center;color:white; padding: 10px; background-color: #ff2121; margin-top: 40px; width: 250px;">Edit
+								profile
+							</button><br>
+							<a href="{{url_for('change_blogger_password')}}">
+								<button class="changebloggerPassword btn"
+									type="button"
+									style="text-align: center;color:white; padding: 10px; background-color: #ff2121; margin-top: 40px; width: 250px;">Change
+									Password
+								</button> </a>
+						</div>
+						<!--buttonsend-->
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endfor %}
+{% endif %}
+<!-- modal form (pop up) for add producer -->
+
+
+<div class="modal fade" id="addnewblog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add New Blog</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form action="{{url_for('add_new_blog')}}" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="title">Blog Title</label>
+            <textarea id="title" type="text" name="title" class="form-control" rows="3"
+              placeholder="Blog Title.." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="content">Blog Content</label>
+            <textarea id="content" type="text" name="content" class="form-control" rows="15"
+              placeholder="Blog content.." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="blogimage">Select Image</label>
+            <input id="blogimg" type="file" name="blogimg" required>
+          </div>
+      </div>
+      <div class="form-group text-center">
+
+        <button class="btn " style="text-align: center; width: 40%; color:white; padding: 10px; background-color: #ff2121;">Add new Blog</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block blogs %}
+{% endblock %}
+{% block organisation %}
+{% endblock %}
+{% block scripts %}
+<script>
+	$(document).ready(function (e) {
+			$("#profilebutton").click(function (e) {
+				$("#profilecontent").toggle();
+			});
+	});
+	$('#addnewblog').on('shown.bs.modal', function() {
+            //To relate the z-index make sure backdrop and modal are siblings
+            $(this).before($('.modal-backdrop'));
+            //Now set z-index of modal greater than backdrop
+            $(this).css("z-index", parseInt($('.modal-backdrop').css('z-index')) + 1);
+        });
+    $(document).ready(function (e) {
+			$('.editbloggerprofile').click(function () {
+				$('.savebloggerprofile').show();
+				$('.changebloggerPassword').hide();
+				$('.editbloggerprofile').hide();
+				$('.bloggerimgupload').show();
+				$('.bloggername,.bloggerphone,.bloggerdob,.bloggerprofession,.bloggeraddress,.bloggerimageupload')
+					.removeAttr('readonly');
+				$('.bloggername,.bloggerphone,.bloggerdob,.bloggerprofession,.bloggeraddress,.bloggerimageupload')
+					.removeAttr('style');
+			});
+		});
+</script>
+{% endblock %}

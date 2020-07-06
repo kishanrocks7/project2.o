@@ -1,0 +1,72 @@
+#curd-border-area{
+    background-color: #e6e6e6;
+    width: 100%;
+/*    height: 500px;*/
+    border-bottom: 80px solid #e6e6e6;
+    border-top: 80px solid #e6e6e6;
+    display: flex;
+    border-radius: 5px 5px 0px 0px;
+}
+#data-curd{
+/*    border: 1px solid cyan;*/
+    margin: 20px;
+    margin-bottom: 0;
+}
+.main-content{
+    margin: 15px;
+    /* border: 1px solid cyan; */
+}
+.main-content input{
+    border: 1px solid #000;
+    margin: 5px;
+    padding: 8px;
+    width: 26%;
+    min-width: 200px;
+}
+input:focus{
+    outline: none;
+}
+#add-button{
+    /* border: 1px solid cyan; */
+    background-color: green;
+    color: white;
+    border: none;
+    /* border-radius: 5px; */
+    padding: 9px;
+   width: 225px;
+    
+}
+
+.plus-sign{
+    font-size: 3rem;
+    padding: 3px;
+}
+#main-curd-area{
+    border-radius: 5px;
+    margin: auto;
+    width: 85%;
+    height: 70%;
+    background-color: white;
+}
+.actions{
+    padding: 0;
+}
+.item-name{
+/*    border: 1px solid;*/
+    font-size: 1.6rem;
+    padding: 10px;
+}
+.item-area{
+    padding: 0;
+/*    border: 1px solid;*/
+}
+.content-header{
+    background-color: #ff2121;
+    color: white;
+}
+.items-data{
+    margin-left: 15px;
+    padding: 10px;
+    color: #000;
+    border-bottom: 1px solid #ddd2d2;
+}
